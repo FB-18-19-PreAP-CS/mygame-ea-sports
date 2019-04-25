@@ -40,7 +40,6 @@ while not done:
             walk_anim = int(f)
             screen.blit(walk_images[walk_anim%4],(x,y))
         
->>>>>>> e5efbeb8bbc9c0a282ead59e6cac80935350e6d9
     else:
         screen.blit(idle_image,(x,y))
     if pressed[pygame.K_w]: 
