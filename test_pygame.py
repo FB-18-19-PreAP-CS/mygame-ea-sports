@@ -1,7 +1,5 @@
 import pygame
 
-import pygame
-
 #pygame.init()
 
 def part_1():
