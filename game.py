@@ -22,18 +22,18 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
     pressed = pygame.key.get_pressed()
-    if pressed[pygame.K_UP] or pressed[pygame.K_DOWN] or pressed[pygame.K_LEFT] or pressed[pygame.K_RIGHT]:
+    if pressed[pygame.K_w] or pressed[pygame.K_s] or pressed[pygame.K_a] or pressed[pygame.K_d]:
         screen.blit(walk_images[walk_anim%16],(x,y))
         walk_anim += 1
     else:
         screen.blit(idle_image,(x,y))
-    if pressed[pygame.K_UP]: 
+    if pressed[pygame.K_w]: 
         y -= 3
-    if pressed[pygame.K_DOWN]: 
+    if pressed[pygame.K_s]: 
         y += 3
-    if pressed[pygame.K_LEFT]: 
+    if pressed[pygame.K_a]: 
         x -= 3
-    if pressed[pygame.K_RIGHT]: 
+    if pressed[pygame.K_d]: 
         x += 3
     pygame.display.flip()
     clock.tick(60)
