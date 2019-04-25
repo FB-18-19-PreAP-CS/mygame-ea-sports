@@ -31,10 +31,6 @@ while not done:
 
     pressed = pygame.key.get_pressed()
     if pressed[pygame.K_w] or pressed[pygame.K_s] or pressed[pygame.K_a] or pressed[pygame.K_d]:
-<<<<<<< HEAD
-        screen.blit(walk_images[walk_anim%16],(x,y))
-        walk_anim += 1
-=======
         if pressed[pygame.K_a]:
             f += .20
             walk_anim = int(f)
