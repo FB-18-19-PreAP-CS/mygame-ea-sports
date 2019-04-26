@@ -22,18 +22,39 @@ r_walk_image1 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_walk with gun_0
 r_walk_image2 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_walk with gun_1_reverse.png')
 r_walk_image3 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_walk with gun_2_reverse.png')
 r_walk_image4 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_walk with gun_3_reverse.png')
+shooting_image1 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_shoot_0.png')
+shooting_image2 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_shoot_1.png')
+shooting_image3 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_shoot_2.png')
+shooting_image4 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_shoot_3.png')
+r_shooting_image1 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_shoot_0_reverse.png')
+r_shooting_image2 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_shoot_1_reverse.png')
+r_shooting_image3 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_shoot_2_reverse.png')
+r_shooting_image4 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_shoot_3_reverse.png')
+
+r_walk_images = [r_walk_image1, r_walk_image2, r_walk_image3, r_walk_image4]
+walk_images = [walk_image1, walk_image2, walk_image3, walk_image4]
+shooting_images = [shooting_image1, shooting_image2, shooting_image3, shooting_image4]
+r_shooting_images = [r_shooting_image1, r_shooting_image2, r_shooting_image3, r_shooting_image4]
+    
 
 while not done:
     screen.fill((255, 255, 255))
-    r_walk_images = [r_walk_image1, r_walk_image2, r_walk_image3, r_walk_image4]
-    walk_images = [walk_image1, walk_image2, walk_image3, walk_image4]
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
 
     pressed = pygame.key.get_pressed()
-    if pressed[pygame.K_w] or pressed[pygame.K_s] or pressed[pygame.K_a] or pressed[pygame.K_d]:
+    if pressed[pygame.K_SPACE]:
+        if facing_west:
+            f += .20
+            shoot_anim = int(f) 
+            screen.blit(r_shooting_images[shoot_anim%4],(x,y))
+        else:
+            f += .20
+            shoot_anim = int(f) 
+            screen.blit(shooting_images[shoot_anim%4],(x,y))
+
+    elif pressed[pygame.K_w] or pressed[pygame.K_s] or pressed[pygame.K_a] or pressed[pygame.K_d]:
         if pressed[pygame.K_a]:
             f += .20
             walk_anim = int(f)
