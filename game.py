@@ -10,7 +10,10 @@ y = 30
 clock = pygame.time.Clock()
 walk_anim = 0
 f = 0
+facing_west = False
+
 idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0.png')
+r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
 walk_image1 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_walk with gun_0.png')
 walk_image2 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_walk with gun_1.png')
 walk_image3 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_walk with gun_2.png')
@@ -41,14 +44,19 @@ while not done:
             screen.blit(walk_images[walk_anim%4],(x,y))
         
     else:
-        screen.blit(idle_image,(x,y))
+        if facing_west:
+            screen.blit(r_idle_image,(x,y))
+        else:
+            screen.blit(idle_image,(x,y))
     if pressed[pygame.K_w]: 
         y -= 3
     if pressed[pygame.K_s]: 
         y += 3
     if pressed[pygame.K_a]: 
         x -= 3
+        facing_west = True
     if pressed[pygame.K_d]: 
         x += 3
+        facing_west = False
     pygame.display.flip()
     clock.tick(60)
