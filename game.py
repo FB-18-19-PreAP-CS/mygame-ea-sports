@@ -3,7 +3,7 @@ import time
 
 pygame.init()
 
-screen = pygame.display.set_mode((700, 600))
+screen = pygame.display.set_mode((516, 389))
 done = False
 x = 30
 y = 30
@@ -11,7 +11,7 @@ clock = pygame.time.Clock()
 walk_anim = 0
 f = 0
 facing_west = False
-
+backround = pygame.image.load('west.jpg')
 idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0.png')
 r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
 walk_image1 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_walk with gun_0.png')
@@ -38,7 +38,7 @@ r_shooting_images = [r_shooting_image1, r_shooting_image2, r_shooting_image3, r_
     
 
 while not done:
-    screen.fill((255, 255, 255))
+    screen.blit(backround,(0,0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
