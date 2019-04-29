@@ -14,27 +14,19 @@ facing_west = False
 backround = pygame.image.load('west.jpg')
 idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0.png')
 r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
-walk_image1 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_walk with gun_0.png')
-walk_image2 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_walk with gun_1.png')
-walk_image3 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_walk with gun_2.png')
-walk_image4 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_walk with gun_3.png')
-r_walk_image1 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_walk with gun_0_reverse.png')
-r_walk_image2 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_walk with gun_1_reverse.png')
-r_walk_image3 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_walk with gun_2_reverse.png')
-r_walk_image4 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_walk with gun_3_reverse.png')
-shooting_image1 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_shoot_0.png')
-shooting_image2 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_shoot_1.png')
-shooting_image3 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_shoot_2.png')
-shooting_image4 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_shoot_3.png')
-r_shooting_image1 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_shoot_0_reverse.png')
-r_shooting_image2 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_shoot_1_reverse.png')
-r_shooting_image3 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_shoot_2_reverse.png')
-r_shooting_image4 = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_shoot_3_reverse.png')
 
-r_walk_images = [r_walk_image1, r_walk_image2, r_walk_image3, r_walk_image4]
-walk_images = [walk_image1, walk_image2, walk_image3, walk_image4]
-shooting_images = [shooting_image1, shooting_image2, shooting_image3, shooting_image4]
-r_shooting_images = [r_shooting_image1, r_shooting_image2, r_shooting_image3, r_shooting_image4]
+walk_images = []
+r_walk_images = []
+r_shooting_images = []
+shooting_images = []
+for i in range(4):
+    r_walk_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_walk with gun_{i}_reverse.png'))
+for i in range(4):
+     r_shooting_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_shoot_{i}_reverse.png'))
+for i in range(4):
+    walk_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_walk with gun_{i}.png'))
+for i in range(4):
+    shooting_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_shoot_{i}.png'))
     
 
 while not done:
