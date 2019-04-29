@@ -3,7 +3,7 @@ import time
 
 pygame.init()
 
-screen = pygame.display.set_mode((516, 389))
+screen = pygame.display.set_mode((516*2, 389*2))
 done = False
 x = 30
 y = 30
@@ -12,6 +12,9 @@ walk_anim = 0
 f = 0
 facing_west = False
 backround = pygame.image.load('west.jpg')
+backround2 = pygame.image.load('west_2.jpg')
+backround3 = pygame.image.load('west_3.jpg')
+backround4 = pygame.image.load('west_4.jpg')
 idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0.png')
 r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
 
@@ -31,6 +34,10 @@ for i in range(4):
 
 while not done:
     screen.blit(backround,(0,0))
+    screen.blit(backround2, (516,0))
+    screen.blit(backround3, (0,389))
+    screen.blit(backround4, (516,389))
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
@@ -64,12 +71,21 @@ while not done:
         else:
             screen.blit(idle_image,(x,y))
     if pressed[pygame.K_w]: 
-        y -= 3
+        if y == 300:
+            continue
+        else:
+            y -= 3
     if pressed[pygame.K_s]: 
-        y += 3
+        if y == 0:
+            continue
+        else:
+            y += 3
     if pressed[pygame.K_a]: 
-        x -= 3
-        facing_west = True
+        if x == 0:
+            facing_west = True
+        else:
+            x -= 3
+            facing_west = True
     if pressed[pygame.K_d]: 
         x += 3
         facing_west = False
