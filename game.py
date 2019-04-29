@@ -65,14 +65,9 @@ while not done:
             walk_anim = int(f)
             screen.blit(r_walk_images[walk_anim%4],(x,y))
         else:
-            if facing_west:
-                f += .20
-                walk_anim = int(f)
-                screen.blit(r_walk_images[walk_anim%4],(x,y))
-            else:
-                f += .20
-                walk_anim = int(f)
-                screen.blit(walk_images[walk_anim%4],(x,y))
+            f += .20
+            walk_anim = int(f)
+            screen.blit(walk_images[walk_anim%4],(x,y))
         
     else:
         if facing_west:
