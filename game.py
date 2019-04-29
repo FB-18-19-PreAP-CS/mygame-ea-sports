@@ -69,12 +69,21 @@ while not done:
         else:
             screen.blit(idle_image,(x,y))
     if pressed[pygame.K_w]: 
-        y -= 3
+        if y == 300:
+            continue
+        else:
+            y -= 3
     if pressed[pygame.K_s]: 
-        y += 3
+        if y == 0:
+            continue
+        else:
+            y += 3
     if pressed[pygame.K_a]: 
-        x -= 3
-        facing_west = True
+        if x == 0:
+            facing_west = True
+        else:
+            x -= 3
+            facing_west = True
     if pressed[pygame.K_d]: 
         x += 3
         facing_west = False
