@@ -36,13 +36,15 @@ while not done:
             done = True
 
     pressed = pygame.key.get_pressed()
-    if pressed[pygame.K_SPACE]:
-        if facing_west:
+    if pressed[pygame.K_UP] or pressed[pygame.K_DOWN] or pressed[pygame.K_LEFT] or pressed[pygame.K_RIGHT]:
+        if pressed[pygame.K_LEFT]:
             f += .20
+            facing_west = True
             shoot_anim = int(f) 
             screen.blit(r_shooting_images[shoot_anim%4],(x,y))
         else:
             f += .20
+            facing_west = False
             shoot_anim = int(f) 
             screen.blit(shooting_images[shoot_anim%4],(x,y))
 
