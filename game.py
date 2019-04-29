@@ -11,6 +11,10 @@ clock = pygame.time.Clock()
 walk_anim = 0
 f = 0
 facing_west = False
+at_western_edge = False
+at_eastern_edge = False
+at_northern_edge = False
+at_southern_edge = False
 backround = pygame.image.load('west.jpg')
 backround2 = pygame.image.load('west_2.jpg')
 backround3 = pygame.image.load('west_3.jpg')
@@ -76,23 +80,35 @@ while not done:
         else:
             screen.blit(idle_image,(x,y))
     if pressed[pygame.K_w]: 
-        if y == 300:
-            continue
-        else:
-            y -= 3
-    if pressed[pygame.K_s]: 
         if y == 0:
-            continue
+            at_northern_edge = True
         else:
-            y += 3
+            if not at_northern_edge:
+                y -= 3
+                at_southern_edge = False
+    if pressed[pygame.K_s]: 
+        if y > 715:
+            at_southern_edge = True
+        else:
+            if not at_southern_edge:
+                y += 3 
+                at_northern_edge = False
     if pressed[pygame.K_a]: 
         if x == 0:
             facing_west = True
+            at_western_edge = True
         else:
-            x -= 3
+            if not at_western_edge:
+                x -= 3
+                at_eastern_edge = False
             facing_west = True
     if pressed[pygame.K_d]: 
-        x += 3
-        facing_west = False
+        if x > 990:
+            at_eastern_edge = True
+        else:
+            if not at_eastern_edge:
+                x += 3
+                at_western_edge = False
+            facing_west = False
     pygame.display.flip()
     clock.tick(60)
