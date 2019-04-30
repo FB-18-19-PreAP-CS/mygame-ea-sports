@@ -37,7 +37,6 @@ for i in range(4):
     
 
 while not done:
-    shooting = False
     screen.blit(backround,(0,0))
     screen.blit(backround2, (516,0))
     screen.blit(backround3, (0,389))
