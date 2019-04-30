@@ -39,6 +39,7 @@ for i in range(4):
     
 
 while not done:
+    shooting = False
     screen.blit(backround,(0,0))
     screen.blit(backround2, (516,0))
     screen.blit(backround3, (0,389))
@@ -85,7 +86,7 @@ while not done:
         else:
             screen.blit(idle_image,(x,y))
     if pressed[pygame.K_w] and not shooting: 
-        if y == 0:
+        if y < 0:
             at_northern_edge = True
         else:
             if not at_northern_edge:
@@ -99,7 +100,7 @@ while not done:
                 y += 3 
                 at_northern_edge = False
     if pressed[pygame.K_a] and not shooting: 
-        if x == 0:
+        if x < 0:
             facing_west = True
             at_western_edge = True
         else:
