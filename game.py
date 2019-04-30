@@ -65,6 +65,8 @@ while not done:
             shooting = True
             shoot_anim = int(f) 
             screen.blit(shooting_images[shoot_anim%4],(x,y))
+            bullet_on_screen = True
+            screen.blit(bullet_image,(x+10,y+10))
 
     elif pressed[pygame.K_w] or pressed[pygame.K_s] or pressed[pygame.K_a] or pressed[pygame.K_d]:
         if pressed[pygame.K_a]:
