@@ -15,13 +15,14 @@ at_western_edge = False
 at_eastern_edge = False
 at_northern_edge = False
 at_southern_edge = False
+bullet_on_screen = False
 backround = pygame.image.load('west.jpg')
 backround2 = pygame.image.load('west_2.jpg')
 backround3 = pygame.image.load('west_3.jpg')
 backround4 = pygame.image.load('west_4.jpg')
 idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0.png')
 r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
-bullet_image = pygame.image.load('images/bulltet_image.png')
+bullet_image = pygame.image.load('images/bullet_image.png')
 
 walk_images = []
 r_walk_images = []
@@ -56,7 +57,8 @@ while not done:
             shoot_anim = int(f) 
             screen.blit(r_shooting_images[shoot_anim%4],(x,y))
             bullet_on_screen = True
-            screen.blit()
+            screen.blit(bullet_image,(x+10,y+10))
+
         else:
             f += .20
             facing_west = False
