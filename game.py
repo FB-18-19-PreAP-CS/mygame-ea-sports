@@ -23,6 +23,7 @@ backround3 = pygame.image.load('west_3.jpg')
 backround4 = pygame.image.load('west_4.jpg')
 idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0.png')
 r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
+bullet_image = pygame.image.load('images/bullet_image.png')
 font =  pygame.font.SysFont("comicsansms",20)
 
 walk_images = []
