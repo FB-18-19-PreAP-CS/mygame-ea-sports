@@ -5,8 +5,8 @@ pygame.init()
 
 screen = pygame.display.set_mode((516*2, 389*2))
 done = False
-x = 30
-y = 30
+x = 500
+y = 335
 clock = pygame.time.Clock()
 walk_anim = 0
 f = 0
@@ -37,6 +37,7 @@ for i in range(4):
     
 
 while not done:
+    shooting = False
     screen.blit(backround,(0,0))
     screen.blit(backround2, (516,0))
     screen.blit(backround3, (0,389))
@@ -47,15 +48,17 @@ while not done:
             done = True
 
     pressed = pygame.key.get_pressed()
-    if pressed[pygame.K_UP] or pressed[pygame.K_DOWN] or pressed[pygame.K_LEFT] or pressed[pygame.K_RIGHT]:
+    if pressed[pygame.K_LEFT] or pressed[pygame.K_RIGHT]:
         if pressed[pygame.K_LEFT]:
             f += .20
             facing_west = True
+            shooting = True
             shoot_anim = int(f) 
             screen.blit(r_shooting_images[shoot_anim%4],(x,y))
         else:
             f += .20
             facing_west = False
+            shooting = True
             shoot_anim = int(f) 
             screen.blit(shooting_images[shoot_anim%4],(x,y))
 
@@ -70,25 +73,26 @@ while not done:
             screen.blit(walk_images[walk_anim%4],(x,y))
         
     else:
+        shooting = False
         if facing_west:
             screen.blit(r_idle_image,(x,y))
         else:
             screen.blit(idle_image,(x,y))
-    if pressed[pygame.K_w]: 
+    if pressed[pygame.K_w] and not shooting: 
         if y == 0:
             at_northern_edge = True
         else:
             if not at_northern_edge:
                 y -= 3
                 at_southern_edge = False
-    if pressed[pygame.K_s]: 
+    if pressed[pygame.K_s] and not shooting: 
         if y > 715:
             at_southern_edge = True
         else:
             if not at_southern_edge:
                 y += 3 
                 at_northern_edge = False
-    if pressed[pygame.K_a]: 
+    if pressed[pygame.K_a] and not shooting: 
         if x == 0:
             facing_west = True
             at_western_edge = True
@@ -97,7 +101,7 @@ while not done:
                 x -= 3
                 at_eastern_edge = False
             facing_west = True
-    if pressed[pygame.K_d]: 
+    if pressed[pygame.K_d] and not shooting: 
         if x > 990:
             at_eastern_edge = True
         else:
