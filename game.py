@@ -3,7 +3,7 @@ import time
 
 pygame.init()
 
-screen = pygame.display.set_mode((516*2, 420*2))
+screen = pygame.display.set_mode((516*2, 418*2))
 done = False
 x = 500
 y = 335
@@ -40,9 +40,6 @@ for i in range(4):
 while not done:
     shooting = False
     screen.blit(backround,(0,0))
-    # screen.blit(backround2, (516,0))
-    # screen.blit(backround3, (0,389))
-    # screen.blit(backround4, (516,389))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
