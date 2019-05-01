@@ -3,7 +3,7 @@ import time
 
 pygame.init()
 
-screen = pygame.display.set_mode((516*2, 389*2))
+screen = pygame.display.set_mode((516*2, 420*2))
 done = False
 x = 500
 y = 335
@@ -17,7 +17,7 @@ at_eastern_edge = False
 at_northern_edge = False
 at_southern_edge = False
 bullet_on_screen = False
-backround = pygame.image.load('west.jpg')
+backround = pygame.image.load('smoothbg.png')
 backround2 = pygame.image.load('west_2.jpg')
 backround3 = pygame.image.load('west_3.jpg')
 backround4 = pygame.image.load('west_4.jpg')
@@ -43,9 +43,9 @@ for i in range(4):
 while not done:
     shooting = False
     screen.blit(backround,(0,0))
-    screen.blit(backround2, (516,0))
-    screen.blit(backround3, (0,389))
-    screen.blit(backround4, (516,389))
+    # screen.blit(backround2, (516,0))
+    # screen.blit(backround3, (0,389))
+    # screen.blit(backround4, (516,389))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
