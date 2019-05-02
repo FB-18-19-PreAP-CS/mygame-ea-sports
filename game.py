@@ -3,7 +3,7 @@ import time
 
 pygame.init()
 
-screen = pygame.display.set_mode((516*2, 418*2))
+screen = pygame.display.set_mode((516*2, 420*2))
 done = False
 x = 500
 y = 335
@@ -34,12 +34,15 @@ for i in range(4):
 for i in range(4):
     walk_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_walk with gun_{i}.png'))
 for i in range(4):
-    shooting_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_shoot_{i}.png'))
+    shooting_images.append(pygame.image.load(f'images/Cow`boy 4 HiRes/Cowboy4_shoot_{i}.png'))
     
 
 while not done:
     shooting = False
     screen.blit(backround,(0,0))
+    # screen.blit(backround2, (516,0))
+    # screen.blit(backround3, (0,389))
+    # screen.blit(backround4, (516,389))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -56,7 +59,7 @@ while not done:
             shoot_anim = int(f) 
             screen.blit(r_shooting_images[shoot_anim%4],(x,y))
             bullet_on_screen = True
-            screen.blit(bullet_image,(x+10,y+35))
+            screen.blit(bullet_image,(x+10,y+10))
 
         else:
             f += .20
@@ -65,7 +68,7 @@ while not done:
             shoot_anim = int(f) 
             screen.blit(shooting_images[shoot_anim%4],(x,y))
             bullet_on_screen = True
-            screen.blit(bullet_image,(x+30,y+35))
+            screen.blit(bullet_image,(x+10,y+10))
 
     elif pressed[pygame.K_w] or pressed[pygame.K_s] or pressed[pygame.K_a] or pressed[pygame.K_d]:
         if pressed[pygame.K_a]:
