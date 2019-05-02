@@ -10,6 +10,7 @@ y = 335
 clock = pygame.time.Clock()
 walk_anim = 0
 f = 0
+orig_time = time.time()
 score_counter = 0
 facing_west = False
 at_western_edge = False
@@ -21,7 +22,7 @@ backround = pygame.image.load('smoothbg.png')
 idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0.png')
 r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
 bullet_image = pygame.image.load('images/bullet_image.png')
-font =  pygame.font.SysFont("comicsansms",20)
+font =  pygame.font.SysFont("Sans-Serif",20)
 
 walk_images = []
 r_walk_images = []
@@ -44,9 +45,13 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
-
+    
+    curr_time = time.time()
+    timer = font.render(f"Timer: {curr_time - orig_time:.4}",True,(0,0,0))
     text = font.render(f"Score: {score_counter}",True,(0,0,0))
+    screen.blit(timer,(475,0))
     screen.blit(text,(900,0))
+
     pressed = pygame.key.get_pressed()
     if pressed[pygame.K_LEFT] or pressed[pygame.K_RIGHT]:
         if pressed[pygame.K_LEFT]:
