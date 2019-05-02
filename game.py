@@ -34,7 +34,7 @@ for i in range(4):
 for i in range(4):
     walk_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_walk with gun_{i}.png'))
 for i in range(4):
-    shooting_images.append(pygame.image.load(f'images/Cow`boy 4 HiRes/Cowboy4_shoot_{i}.png'))
+    shooting_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_shoot_{i}.png'))
     
 
 while not done:
