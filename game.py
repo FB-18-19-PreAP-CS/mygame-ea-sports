@@ -22,6 +22,7 @@ idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0.pn
 r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
 bullet_image = pygame.image.load('images/bullet_image.png')
 font =  pygame.font.SysFont("comicsansms",20)
+bullets = []
 
 walk_images = []
 r_walk_images = []
@@ -51,6 +52,11 @@ while not done:
     text = font.render(f"Score: {score_counter}",True,(0,0,0))
     screen.blit(text,(900,0))
     pressed = pygame.key.get_pressed()
+    if bullet_on_screen == True:
+        for i in range(len(bullets)):
+            bullets[i][1] += 50
+            screen.blit(bullet_image,bullets[i][1],bullets[i][2]
+
     if pressed[pygame.K_LEFT] or pressed[pygame.K_RIGHT]:
         if pressed[pygame.K_LEFT]:
             f += .20
@@ -59,7 +65,7 @@ while not done:
             shoot_anim = int(f) 
             screen.blit(r_shooting_images[shoot_anim%4],(x,y))
             bullet_on_screen = True
-            screen.blit(bullet_image,(x+10,y+10))
+            bullets.append([bullet_image,x+10,y+35])
 
         else:
             f += .20
@@ -68,7 +74,8 @@ while not done:
             shoot_anim = int(f) 
             screen.blit(shooting_images[shoot_anim%4],(x,y))
             bullet_on_screen = True
-            screen.blit(bullet_image,(x+10,y+10))
+            bullets.append()
+            bullets.append([bullet_image,x+30,y+35])
 
     elif pressed[pygame.K_w] or pressed[pygame.K_s] or pressed[pygame.K_a] or pressed[pygame.K_d]:
         if pressed[pygame.K_a]:
