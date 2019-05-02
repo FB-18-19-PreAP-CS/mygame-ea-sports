@@ -74,6 +74,12 @@ while not done:
             screen.blit(shooting_images[shoot_anim%4],(x,y))
             bullet_on_screen = True
             screen.blit(bullet_image,(x+30,y+35))
+
+            while bullet_x < 1000:
+            screen.blit(bullet_image,(bullet_x,bullet_y))
+            bullet_x += 10
+            bullet_x = x + 35
+            bullet_y = y + 35
     
 
     elif pressed[pygame.K_w] or pressed[pygame.K_s] or pressed[pygame.K_a] or pressed[pygame.K_d]:
