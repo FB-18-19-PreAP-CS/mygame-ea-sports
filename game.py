@@ -1,5 +1,5 @@
 import pygame
-import time
+import threading
 
 pygame.init()
 
@@ -60,11 +60,17 @@ while not done:
             screen.blit(r_shooting_images[shoot_anim%4],(x,y))
             bullet_on_screen = True
 
+            
             while bullet_x > 0:
-                screen.blit(bullet_image,(bullet_x,bullet_y))
-                bullet_x -= 10
+                def bulletfire():
+                    threading.Timer(.5,bulletfire).start()
+                    screen.blit(bullet_image,(bullet_x,bullet_y))
+
+                    bullet_x -= 10
+            bulletfire()
             bullet_x = x + 10
             bullet_y = y + 35
+            
 
         else:
             f += .20
@@ -75,9 +81,9 @@ while not done:
             bullet_on_screen = True
             screen.blit(bullet_image,(x+30,y+35))
 
-            while bullet_x < 1000:
-            screen.blit(bullet_image,(bullet_x,bullet_y))
-            bullet_x += 10
+            while bullet_x < 1032:
+                screen.blit(bullet_image,(bullet_x,bullet_y))
+                bullet_x += 10
             bullet_x = x + 35
             bullet_y = y + 35
     
