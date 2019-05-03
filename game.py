@@ -22,7 +22,7 @@ backround = pygame.image.load('smoothbg.png')
 idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0.png')
 r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
 bullet_image = pygame.image.load('images/bullet_image.png')
-font =  pygame.font.SysFont("Sans-Serif",20)
+font =  pygame.font.SysFont("Sans-Serif",30)
 
 walk_images = []
 r_walk_images = []
@@ -53,8 +53,8 @@ while not done:
     screen.blit(text,(900,0))
 
     pressed = pygame.key.get_pressed()
-    if pressed[pygame.K_LEFT] or pressed[pygame.K_RIGHT]:
-        if pressed[pygame.K_LEFT]:
+    if pressed[pygame.K_q] or pressed[pygame.K_e]:
+        if pressed[pygame.K_q]:
             f += .20
             facing_west = True
             shooting = True
