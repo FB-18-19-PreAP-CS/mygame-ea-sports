@@ -5,24 +5,16 @@ pygame.init()
 
 screen = pygame.display.set_mode((516*2, 418*2))
 done = False
-x = 500
-y = 335
 clock = pygame.time.Clock()
 walk_anim = 0
 f = 0
 orig_time = time.time()
 score_counter = 0
-facing_west = False
-at_western_edge = False
-at_eastern_edge = False
-at_northern_edge = False
-at_southern_edge = False
-bullet_on_screen = False
 backround = pygame.image.load('smoothbg.png')
 idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0.png')
 r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
 bullet_image = pygame.image.load('images/bullet_image.png')
-font =  pygame.font.SysFont("Sans-Serif",30)
+font =  pygame.font.SysFont("Sans-Serif",20)
 
 walk_images = []
 r_walk_images = []
@@ -37,9 +29,19 @@ for i in range(4):
 for i in range(4):
     shooting_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_shoot_{i}.png'))
     
+def Player():
+    def __init__(self):
+        shooting = False
+        facing_west = False
+        at_western_edge = False
+        at_eastern_edge = False
+        at_northern_edge = False
+        at_southern_edge = False
+        x = 500
+        y = 335
 
 while not done:
-    shooting = False
+    p1.shooting = False
     screen.blit(backround,(0,0))
 
     for event in pygame.event.get():
@@ -53,71 +55,73 @@ while not done:
     screen.blit(text,(900,0))
 
     pressed = pygame.key.get_pressed()
-    if pressed[pygame.K_q] or pressed[pygame.K_e]:
-        if pressed[pygame.K_q]:
+    if pressed[pygame.K_LEFT] or pressed[pygame.K_RIGHT]:
+        if pressed[pygame.K_LEFT]:
             f += .20
-            facing_west = True
-            shooting = True
+            p1.facing_west = True
+            p1.shooting = True
             shoot_anim = int(f) 
-            screen.blit(r_shooting_images[shoot_anim%4],(x,y))
+            screen.blit(r_shooting_images[shoot_anim%4],(p1.x,p1.y))
             bullet_on_screen = True
-            screen.blit(bullet_image,(x+10,y+35))
+            screen.blit(bullet_image,(p1.x+10,p1.y+35))
 
         else:
             f += .20
-            facing_west = False
-            shooting = True
+            p1.facing_west = False
+            p1.shooting = True
             shoot_anim = int(f) 
-            screen.blit(shooting_images[shoot_anim%4],(x,y))
+            screen.blit(shooting_images[shoot_anim%4],(p1.x,p1.y))
             bullet_on_screen = True
-            screen.blit(bullet_image,(x+30,y+35))
+            screen.blit(bullet_image,(p1.x+30,p1.y+35))
 
     elif pressed[pygame.K_w] or pressed[pygame.K_s] or pressed[pygame.K_a] or pressed[pygame.K_d]:
         if pressed[pygame.K_a]:
             f += .20
             walk_anim = int(f)
-            screen.blit(r_walk_images[walk_anim%4],(x,y))
+            screen.blit(r_walk_images[walk_anim%4],(p1.x,p1.y))
         else:
             f += .20
             walk_anim = int(f)
-            screen.blit(walk_images[walk_anim%4],(x,y))
+            screen.blit(walk_images[walk_anim%4],(p1.x,p1.y))
         
     else:
-        shooting = False
-        if facing_west:
-            screen.blit(r_idle_image,(x,y))
+        p1.shooting = False
+        if p1.facing_west:
+            screen.blit(r_idle_image,(p1.x,p1.y))
         else:
-            screen.blit(idle_image,(x,y))
-    if pressed[pygame.K_w] and not shooting: 
+            screen.blit(idle_image,(p1.x,p1.y))
+    if pressed[pygame.K_w] and not p1.shooting: 
         if y < 0:
-            at_northern_edge = True
+            p1.at_northern_edge = True
         else:
-            if not at_northern_edge:
-                y -= 3
-                at_southern_edge = False
-    if pressed[pygame.K_s] and not shooting: 
+            if not p1.at_northern_edge:
+                p1.y -= 3
+                p1.at_southern_edge = False
+    if pressed[pygame.K_s] and not p1.shooting: 
         if y > 715:
-            at_southern_edge = True
+            p1.at_southern_edge = True
         else:
-            if not at_southern_edge:
-                y += 3 
-                at_northern_edge = False
-    if pressed[pygame.K_a] and not shooting: 
+            if not p1.at_southern_edge:
+                p1.y += 3 
+                p1.at_northern_edge = False
+    if pressed[pygame.K_a] and not p1.shooting: 
         if x < 0:
-            facing_west = True
-            at_western_edge = True
+            p1.facing_west = True
+            p1.at_western_edge = True
         else:
-            if not at_western_edge:
-                x -= 3
-                at_eastern_edge = False
-            facing_west = True
-    if pressed[pygame.K_d] and not shooting: 
+            if not p1.at_western_edge:
+                p1.x -= 3
+                p1.at_eastern_edge = False
+            p1.facing_west = True
+    if pressed[pygame.K_d] and not p1.shooting: 
         if x > 990:
-            at_eastern_edge = True
+            p1.at_eastern_edge = True
         else:
-            if not at_eastern_edge:
-                x += 3
-                at_western_edge = False
-            facing_west = False
+            if not p1.at_eastern_edge:
+                p1.x += 3
+                p1.at_western_edge = False
+            p1.facing_west = False
     pygame.display.flip()
     clock.tick(60)
+
+p1 = Player
