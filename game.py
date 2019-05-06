@@ -15,7 +15,8 @@ min = 0
 hour = 0
 curr_time = 0
 orig_time = time.time()
-score_counter = 0
+p1_score_counter = 0
+p2_score_counter = 0
 facing_west = False
 at_western_edge = False
 at_eastern_edge = False
@@ -73,9 +74,11 @@ while not done:
 
     curr_time = time.time()
     timer = font.render(f"{hour}:{min}:{int(seconds)}",True,(0,0,0))
-    text = font.render(f"Score: {score_counter}",True,(0,0,0))
+    p1_text = font.render(f"P1 Score: {p1_score_counter}",True,(255,0,0))
+    p2_text = font.render(f"P2 Score: {p2_score_counter}",True,(0,0,255))
     screen.blit(timer,(490,0))
-    screen.blit(text,(900,0))
+    screen.blit(p1_text,(20,0))
+    screen.blit(p2_text,(872,0))
 
     pressed = pygame.key.get_pressed()
 
