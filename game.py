@@ -31,7 +31,7 @@ def main():
     r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
     r_bullet_image = pygame.image.load('images/r_bullet_image.png')
     bullet_image = pygame.image.load('images/bullet_image.png')
-    font =  pygame.font.SysFont("Sans-Serif",20)
+    font =  pygame.font.SysFont("Sans-Serif",30)
 
     bullets = []
     bullets2 = []
@@ -39,6 +39,7 @@ def main():
     r_walk_images = []
     r_shooting_images = []
     shooting_images = []
+
     for i in range(4):
         r_walk_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_walk with gun_{i}_reverse.png'))
     for i in range(4):
