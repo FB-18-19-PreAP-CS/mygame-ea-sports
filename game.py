@@ -29,6 +29,7 @@ def main():
     backround = pygame.image.load('smoothbg.png')
     idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0.png')
     r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
+    r_bullet_image = pygame.image.load('images/r_bullet_image.png')
     bullet_image = pygame.image.load('images/bullet_image.png')
     font =  pygame.font.SysFont("Sans-Serif",20)
 
