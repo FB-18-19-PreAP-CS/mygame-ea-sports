@@ -74,9 +74,9 @@ while not done:
         orig_time = time.time()
 
     curr_time = time.time()
-    timer = font.render(f"Timer: {hour}:{min}:{int(seconds)}",True,(0,0,0))
+    timer = font.render(f"{hour}:{min}:{int(seconds)}",True,(0,0,0))
     text = font.render(f"Score: {score_counter}",True,(0,0,0))
-    screen.blit(timer,(475,0))
+    screen.blit(timer,(490,0))
     screen.blit(text,(900,0))
 
     pressed = pygame.key.get_pressed()
