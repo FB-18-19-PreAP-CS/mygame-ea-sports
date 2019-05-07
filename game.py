@@ -3,7 +3,7 @@ import time
 
 pygame.init()
 
-screen = pygame.display.set_mode((516*2, 835))
+screen = pygame.display.set_mode((516*2, 418*2))
 done = False
 x = 500
 y = 335
@@ -15,21 +15,19 @@ min = 0
 hour = 0
 curr_time = 0
 orig_time = time.time()
+o_time = time.time()
+c_time = time.time()
 score_counter = 0
-facing_west = False 
+facing_west = False
 at_western_edge = False
 at_eastern_edge = False
 at_northern_edge = False
 at_southern_edge = False
-bullet_on_screen = False
 backround = pygame.image.load('smoothbg.png')
 idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0.png')
 r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
 r_bullet_image = pygame.image.load('images/r_bullet_image.png')
 bullet_image = pygame.image.load('images/bullet_image.png')
-pygame.mixer.music.load('west.ogg')
-pygame.mixer.music.play(-1)
-
 
 bullets = []
 bullets2 = []
@@ -52,6 +50,8 @@ for i in range(4):
     
 
 while not done:
+    c_time = time.time()
+
     shooting = False
     screen.blit(backround,(0,0))
 
@@ -60,7 +60,7 @@ while not done:
             done = True
 
     seconds = (curr_time - orig_time) // 1
-
+    sec = (c_time - o_time)
     if min == 60:
         hour += 1
         min = 0
@@ -101,23 +101,20 @@ while not done:
     bullets2.clear()
 
     if pressed[pygame.K_q] or pressed[pygame.K_e]:
+        f += .20
+        shooting = True
+        shoot_anim = int(f)
         if pressed[pygame.K_q]:
-            f += .20
-            facing_west = True
-            shooting = True
-            shoot_anim = int(f) 
             screen.blit(r_shooting_images[shoot_anim%4],(x,y))
-            bullet_on_screen = True
-            bullets.append(['e',x+10,y+35])
-
         else:
-            f += .20
-            facing_west = False
-            shooting = True
-            shoot_anim = int(f) 
             screen.blit(shooting_images[shoot_anim%4],(x,y))
-            bullet_on_screen = True
-            bullets.append(['w',x+30,y+35])
+        if sec >= .5:
+            if pressed[pygame.K_q]:
+                bullets.append(['e',x+10,y+35])
+            else:
+                bullets.append(['w',x+30,y+35])
+            o_time = time.time()
+            c_time = time.time()
 
     elif pressed[pygame.K_w] or pressed[pygame.K_s] or pressed[pygame.K_a] or pressed[pygame.K_d]:
         if pressed[pygame.K_a]:
