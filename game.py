@@ -15,7 +15,7 @@ class Player():
         self.y = 335
 
 def main(): 
-    screen = pygame.display.set_mode((516*2, 418*2))
+    screen = pygame.display.set_mode((1032, 835))
     font =  pygame.font.SysFont("Sans-Serif",30)
     done = False
     x = 500
