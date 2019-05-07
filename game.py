@@ -109,7 +109,6 @@ def main():
             bullets.append(bullets2[i])
         bullets2.clear()
 
-
         if pressed[pygame.K_q] or pressed[pygame.K_e]:
             f += .20
             p1.shooting = True
