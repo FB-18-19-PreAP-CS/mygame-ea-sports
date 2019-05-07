@@ -3,7 +3,7 @@ import time
 
 pygame.init()
 
-screen = pygame.display.set_mode((516*2, 418*2))
+screen = pygame.display.set_mode((516*2, 835))
 done = False
 x = 500
 y = 335
