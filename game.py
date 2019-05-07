@@ -113,7 +113,7 @@ def main():
       
         if pressed[pygame.K_q] or pressed[pygame.K_e]:
             f += .20
-            shooting = True
+            p1.shooting = True
             shoot_anim = int(f)
             if pressed[pygame.K_q]:
                 screen.blit(r_shooting_images[shoot_anim%4],(p1.x,p1.y))
