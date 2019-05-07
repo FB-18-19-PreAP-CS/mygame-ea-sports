@@ -85,10 +85,12 @@ while not done:
         if bullets[i][1] < 0:
             bullets[i] = [0,0,0]
         if bullets[i][0] == 'w':
-            bullets[i][1] += 20
+            for j in range(20):
+                bullets[i][1] += 1
             screen.blit(bullet_image,(bullets[i][1],bullets[i][2]))
         if bullets[i][0] == 'e':
-            bullets[i][1] -= 20
+            for j in range(20):
+                bullets[i][1] -= 1
             screen.blit(r_bullet_image,(bullets[i][1],bullets[i][2]))
     for i in range(len(bullets)):
         if bullets[i][1] != 0:
