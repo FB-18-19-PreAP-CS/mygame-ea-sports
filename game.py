@@ -87,11 +87,11 @@ def main():
 
         curr_time = time.time()
         timer = font.render(f"Timer: {hour}:{min}:{int(seconds)}",True,(0,0,0))
-        p1_score_text = font.render(f"P1 Score: {p1_score_counter}",True,(255,0,0))
-        p2_score_text = font.render(f"P1 Score: {p2_score_counter}",True,(0,0,255))
+        p2_score_text = font.render(f"P2 Score: {p2_score_counter}",True,(255,0,0))
+        p1_score_text = font.render(f"P1 Score: {p1_score_counter}",True,(0,0,255))
         screen.blit(timer,(475,0))
-        screen.blit(p1_score_text,(870,0))
-        screen.blit(p2_score_text,(40,0))
+        screen.blit(p2_score_text,(870,0))
+        screen.blit(p1_score_text,(40,0))
 
         pressed = pygame.key.get_pressed()
 
