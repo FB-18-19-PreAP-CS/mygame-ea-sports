@@ -2,7 +2,7 @@ import pygame
 import time
 
 pygame.init()
-SHOOTING_SPEED = .3
+
 class Player():
     def __init__(self):
         self.shooting = False
@@ -13,6 +13,21 @@ class Player():
         self.at_southern_edge = False
         self.x = 500
         self.y = 335
+
+def clear_bullets(bullets):
+    bullets2 = []
+    for i in range(len(bullets)):
+            if bullets[i][1] != 0:
+                bullets2.append(bullets[i])
+    bullets.clear()
+    for i in range(len(bullets2)):
+        bullets.append(bullets2[i])
+    bullets2.clear()
+
+# def check_bullets(bullet_list,hitboxes):
+#     for bullet in bullet_list:
+#         for hitbox in hitboxes
+#             if bullet[1] <= hitbox[0] + 50 and bullet[]
 
 def main(): 
     screen = pygame.display.set_mode((516*2, 418*2))
@@ -102,13 +117,15 @@ def main():
             if bullets[i][0] == 'e':
                 bullets[i][1] -= 20
                 screen.blit(r_bullet_image,(bullets[i][1],bullets[i][2]))
-        for i in range(len(bullets)):
-            if bullets[i][1] != 0:
-                bullets2.append(bullets[i])
-        bullets.clear()
-        for i in range(len(bullets2)):
-            bullets.append(bullets2[i])
-        bullets2.clear()
+        # for i in range(len(bullets)):
+        #     if bullets[i][1] != 0:
+        #         bullets2.append(bullets[i])
+        # bullets.clear()
+        # for i in range(len(bullets2)):
+        #     bullets.append(bullets2[i])
+        # bullets2.clear()
+        clear_bullets(bullets)
+        print(bullets)
 
         if pressed[pygame.K_q] or pressed[pygame.K_e]:
             f += .20
@@ -118,7 +135,7 @@ def main():
                 screen.blit(r_shooting_images[shoot_anim%4],(p1.x,p1.y))
             else:
                 screen.blit(shooting_images[shoot_anim%4],(p1.x,p1.y))
-            if sec >= SHOOTING_SPEED:
+            if sec >= .5:
                 if pressed[pygame.K_q]:
                     bullets.append(['e',p1.x+10,p1.y+35])
                 else:
