@@ -15,8 +15,8 @@ class Player():
         self.y = 335
 
 def main(): 
-    screen = pygame.display.set_mode((516*2, 418*2))
-    font =  pygame.font.SysFont("Sans-Serif",30)
+    screen = pygame.display.set_mode((1032, 835))
+    font =  pygame.font.SysFont("Sans-Serif",32)
     done = False
     x = 500
     y = 335
@@ -30,7 +30,8 @@ def main():
     orig_time = time.time()
     o_time = time.time()
     c_time = time.time()
-    score_counter = 0
+    p1_score_counter = 0
+    p2_score_counter = 0
     facing_west = False
     at_western_edge = False
     at_eastern_edge = False
@@ -41,12 +42,10 @@ def main():
     r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
     r_bullet_image = pygame.image.load('images/r_bullet_image.png')
     bullet_image = pygame.image.load('images/bullet_image.png')
-
+    pygame.mixer.music.load('west.ogg')
+    pygame.mixer.music.play(-1)
     bullets = []
     bullets2 = []
-
-
-
     walk_images = []
     r_walk_images = []
     r_shooting_images = []
@@ -84,10 +83,15 @@ def main():
             orig_time = time.time()
 
         curr_time = time.time()
-        timer = font.render(f"Timer: {hour}:{min}:{int(seconds)}",True,(0,0,0))
-        text = font.render(f"Score: {score_counter}",True,(0,0,0))
+        timer = font.render(f"Timer: {hour}:{min}:{int(seconds)}",True,(255,255,255))
+   
+        p1_score_text = font.render(f"P1 Score: {p1_score_counter}",True,(255,0,0))
+        p2_score_text = font.render(f"P2 Score: {p2_score_counter}",True,(0,0,255))
+
+        pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(20, 0, 1000, 30))
+        screen.blit(p1_score_text,(870,0))
+        screen.blit(p2_score_text,(40,0))
         screen.blit(timer,(475,0))
-        screen.blit(text,(900,0))
 
         pressed = pygame.key.get_pressed()
 
@@ -109,7 +113,6 @@ def main():
         for i in range(len(bullets2)):
             bullets.append(bullets2[i])
         bullets2.clear()
-
 
         if pressed[pygame.K_q] or pressed[pygame.K_e]:
             f += .20
