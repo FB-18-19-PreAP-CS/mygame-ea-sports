@@ -2,7 +2,7 @@ import pygame
 import time
 
 pygame.init()
-
+SHOOTING_SPEED = .25
 class Player():
     def __init__(self):
         self.shooting = False
@@ -110,7 +110,6 @@ def main():
             bullets.append(bullets2[i])
         bullets2.clear()
 
-
         if pressed[pygame.K_q] or pressed[pygame.K_e]:
             f += .20
             p1.shooting = True
@@ -119,7 +118,7 @@ def main():
                 screen.blit(r_shooting_images[shoot_anim%4],(p1.x,p1.y))
             else:
                 screen.blit(shooting_images[shoot_anim%4],(p1.x,p1.y))
-            if sec >= .5:
+            if sec >= SHOOTING_SPEED:
                 if pressed[pygame.K_q]:
                     bullets.append(['e',p1.x+10,p1.y+35])
                 else:
