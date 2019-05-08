@@ -2,7 +2,7 @@ import pygame
 import time
 
 pygame.init()
-SHOOTING_SPEED = .25
+SHOOTING_SPEED = .3
 class Player():
     def __init__(self):
         self.shooting = False
