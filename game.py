@@ -16,7 +16,7 @@ class Player():
 
 def main(): 
     screen = pygame.display.set_mode((1032, 835))
-    font =  pygame.font.SysFont("Sans-Serif",30)
+    font =  pygame.font.SysFont("Sans-Serif",32)
     done = False
     x = 500
     y = 335
@@ -30,7 +30,8 @@ def main():
     orig_time = time.time()
     o_time = time.time()
     c_time = time.time()
-    score_counter = 0
+    p1_score_counter = 0
+    p2_score_counter = 0
     facing_west = False
     at_western_edge = False
     at_eastern_edge = False
@@ -64,6 +65,7 @@ def main():
         c_time = time.time()
 
         p1.shooting = False
+        p2.shooting = False
         screen.blit(backround,(0,0))
 
         for event in pygame.event.get():
@@ -83,10 +85,16 @@ def main():
             orig_time = time.time()
 
         curr_time = time.time()
-        timer = font.render(f"Timer: {hour}:{min}:{int(seconds)}",True,(0,0,0))
-        text = font.render(f"Score: {score_counter}",True,(0,0,0))
+        timer = font.render(f"Timer: {hour}:{min}:{int(seconds)}",True,(255,255,255))
+    
+    
+        p1_score_text = font.render(f"P1 Score: {p1_score_counter}",True,(255,0,0))
+        p2_score_text = font.render(f"P2 Score: {p2_score_counter}",True,(0,0,255))
+
+        pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(20, 0, 1000, 30))
+        screen.blit(p1_score_text,(870,0))
+        screen.blit(p2_score_text,(40,0))
         screen.blit(timer,(475,0))
-        screen.blit(text,(900,0))
 
         pressed = pygame.key.get_pressed()
 
@@ -172,9 +180,74 @@ def main():
                     p1.x += 3
                     p1.at_western_edge = False
                 p1.facing_west = False
+                
+        if pressed[pygame.K_y] or pressed[pygame.K_i]:
+            f += .20
+            p2.shooting = True
+            shoot_anim = int(f)
+            if pressed[pygame.K_y]:
+                screen.blit(r_shooting_images[shoot_anim%4],(p2.x,p2.y))
+            else:
+                screen.blit(shooting_images[shoot_anim%4],(p2.x,p2.y))
+            if sec >= .5:
+                if pressed[pygame.K_y]:
+                    bullets.append(['e',p2.x+10,p2.y+35])
+                else:
+                    bullets.append(['w',p2.x+30,p2.y+35])
+                o_time = time.time()
+                c_time = time.time()
+
+        elif pressed[pygame.K_u] or pressed[pygame.K_j] or pressed[pygame.K_h] or pressed[pygame.K_k]:
+            if pressed[pygame.K_a]:
+                f += .20
+                walk_anim = int(f)
+                screen.blit(r_walk_images[walk_anim%4],(p2.x,p2.y))
+            else:
+                f += .20
+                walk_anim = int(f)
+                screen.blit(walk_images[walk_anim%4],(p2.x,p2.y))
+
+        else:
+            p2.shooting = False
+            if p2.facing_west:
+                screen.blit(r_idle_image,(p2.x,p2.y))
+            else:
+                screen.blit(idle_image,(p2.x,p2.y))
+        if pressed[pygame.K_u] and not p2.shooting: 
+            if p2.y < 0:
+                p2.at_northern_edge = True
+            else:
+                if not p2.at_northern_edge:
+                    p2.y -= 3
+                    p2.at_southern_edge = False
+        if pressed[pygame.K_j] and not p2.shooting: 
+            if p2.y > 715:
+                p2.at_southern_edge = True
+            else:
+                if not p2.at_southern_edge:
+                    p2.y += 3 
+                    p2.at_northern_edge = False
+        if pressed[pygame.K_h] and not p2.shooting: 
+            if  p2.x < 0:
+                p2.facing_west = True
+                p2.at_western_edge = True
+            else:
+                if not p2.at_western_edge:
+                    p2.x -= 3
+                    p2.at_eastern_edge = False
+                p2.facing_west = True
+        if pressed[pygame.K_k] and not p2.shooting: 
+            if p2.x > 990:
+                p2.at_eastern_edge = True
+            else:
+                if not p2.at_eastern_edge:
+                    p2.x += 3
+                    p2.at_western_edge = False
+                p2.facing_west = False
         pygame.display.flip()
         clock.tick(60)
 
 if __name__ == "__main__":
     p1 = Player()
+    p2 = Player()
     main()
