@@ -24,10 +24,16 @@ def clear_bullets(bullets):
         bullets.append(bullets2[i])
     bullets2.clear()
 
-# def check_bullets(bullet_list,hitboxes):
-#     for bullet in bullet_list:
-#         for hitbox in hitboxes
-#             if bullet[1] <= hitbox[0] + 50 and bullet[]
+def check_bullets(bullet_list,hitboxes):
+    for i in range(len(bullet_list)):
+        for hitbox in hitboxes:
+            if bullet_list[i][1] == hitboxes[0]:
+                if bullet_list[i][2] <= hitbox[1] + hitbox[2] and bullet_list[i][2] >= hitbox[1]:
+                    if hitbox[3] == 'o':
+                        bullet_list[i] = [0,0,0]
+                    if hitbox[3] == 'p':
+                        bullet_list[i] = [0,0,0]
+                        print('hit')           
 
 def main(): 
     screen = pygame.display.set_mode((516*2, 418*2))
@@ -58,8 +64,7 @@ def main():
     bullet_image = pygame.image.load('images/bullet_image.png')
 
     bullets = []
-    bullets2 = []
-
+    hitboxes = [(516,418,400,'p')]
 
 
     walk_images = []
@@ -112,20 +117,19 @@ def main():
             if bullets[i][1] < 0:
                 bullets[i] = [0,0,0]
             if bullets[i][0] == 'w':
-                bullets[i][1] += 20
-                screen.blit(bullet_image,(bullets[i][1],bullets[i][2]))
+                for j in range(20):
+                    bullets[i][1] += 1
+                    check_bullets(bullets,hitboxes)
+                if bullets[i][0] == 'w':
+                    screen.blit(bullet_image,(bullets[i][1],bullets[i][2]))
             if bullets[i][0] == 'e':
-                bullets[i][1] -= 20
-                screen.blit(r_bullet_image,(bullets[i][1],bullets[i][2]))
-        # for i in range(len(bullets)):
-        #     if bullets[i][1] != 0:
-        #         bullets2.append(bullets[i])
-        # bullets.clear()
-        # for i in range(len(bullets2)):
-        #     bullets.append(bullets2[i])
-        # bullets2.clear()
+                for j in range(20):
+                    bullets[i][1] -= 1
+                    check_bullets(bullets,hitboxes)
+                if bullets[i][0] == 'e':
+                    screen.blit(r_bullet_image,(bullets[i][1],bullets[i][2]))
         clear_bullets(bullets)
-        print(bullets)
+        # print(bullets)
 
         if pressed[pygame.K_q] or pressed[pygame.K_e]:
             f += .20
@@ -137,9 +141,9 @@ def main():
                 screen.blit(shooting_images[shoot_anim%4],(p1.x,p1.y))
             if sec >= .5:
                 if pressed[pygame.K_q]:
-                    bullets.append(['e',p1.x+10,p1.y+35])
+                    bullets.append(['e',p1.x+10,p1.y+35,''])
                 else:
-                    bullets.append(['w',p1.x+30,p1.y+35])
+                    bullets.append(['w',p1.x+30,p1.y+35,''])
                 o_time = time.time()
                 c_time = time.time()
 
