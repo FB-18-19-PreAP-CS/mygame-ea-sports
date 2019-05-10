@@ -13,6 +13,8 @@ class Player():
         self.at_southern_edge = False
         self.x = 500
         self.y = 335
+        self.width = 10
+        self.height = 40
 
 def clear_bullets(bullets):
     bullets2 = []
@@ -27,20 +29,20 @@ def clear_bullets(bullets):
 def check_bullets(bullet_list,hitboxes):
     for i in range(len(bullet_list)):
         for hitbox in hitboxes:
-            if bullet_list[i][1] == hitboxes[0]:
-                if bullet_list[i][2] <= hitbox[1] + hitbox[2] and bullet_list[i][2] >= hitbox[1]:
-                    if hitbox[3] == 'o':
+            if bullet_list[i][1] >= hitbox[0] and bullet_list[i][1] <= (hitbox[0] + hitbox[2]):
+                if bullet_list[i][2] <= (hitbox[1] + hitbox[3]) and bullet_list[i][2] >= hitbox[1]:
+                    if hitbox[4] == 'o':
                         bullet_list[i] = [0,0,0]
-                    if hitbox[3] == 'p':
+                    if hitbox[4] == 'p':
                         bullet_list[i] = [0,0,0]
-                        print('hit')           
+                        print('hit')
 
-def main(): 
+def main():
+    p1 = Player()
+    p2 = Player()
     screen = pygame.display.set_mode((516*2, 418*2))
     font =  pygame.font.SysFont("Sans-Serif",30)
     done = False
-    x = 500
-    y = 335
     clock = pygame.time.Clock()
     walk_anim = 0
     f = 0
@@ -64,8 +66,6 @@ def main():
     bullet_image = pygame.image.load('images/bullet_image.png')
 
     bullets = []
-    hitboxes = [(516,418,400,'p')]
-
 
     walk_images = []
     r_walk_images = []
@@ -81,6 +81,7 @@ def main():
         shooting_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_shoot_{i}.png'))
 
     while not done:
+        hitboxes = [(p1.x,p1.y,p1.width,p1.height,'p'),(p2.x,p2.y,p2.width,p2.height,'p')]
         c_time = time.time()
 
         p1.shooting = False
@@ -129,8 +130,7 @@ def main():
                 if bullets[i][0] == 'e':
                     screen.blit(r_bullet_image,(bullets[i][1],bullets[i][2]))
         clear_bullets(bullets)
-        # print(bullets)
-
+        
         if pressed[pygame.K_q] or pressed[pygame.K_e]:
             f += .20
             p1.shooting = True
@@ -141,9 +141,9 @@ def main():
                 screen.blit(shooting_images[shoot_anim%4],(p1.x,p1.y))
             if sec >= .5:
                 if pressed[pygame.K_q]:
-                    bullets.append(['e',p1.x+10,p1.y+35,''])
+                    bullets.append(['e',p1.x+10,p1.y+35])
                 else:
-                    bullets.append(['w',p1.x+30,p1.y+35,''])
+                    bullets.append(['w',p1.x+30,p1.y+35])
                 o_time = time.time()
                 c_time = time.time()
 
@@ -262,6 +262,4 @@ def main():
         clock.tick(60)
 
 if __name__ == "__main__":
-    p1 = Player()
-    p2 = Player()
     main()
