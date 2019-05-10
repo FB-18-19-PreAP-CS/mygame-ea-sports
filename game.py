@@ -37,13 +37,14 @@ def main():
     at_eastern_edge = False
     at_northern_edge = False
     at_southern_edge = False
-    backround = pygame.image.load('smoothbg.png')
+    backround = pygame.image.load('hitbox bg.png')
     idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0.png')
     r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
     r_bullet_image = pygame.image.load('images/r_bullet_image.png')
     bullet_image = pygame.image.load('images/bullet_image.png')
     pygame.mixer.music.load('thegbu.ogg')
     pygame.mixer.music.play(-1)
+ 
     bullets = []
     bullets2 = []
     walk_images = []
@@ -247,4 +248,8 @@ def main():
 if __name__ == "__main__":
     p1 = Player(60,400)
     p2 = Player(952,400)
+<<<<<<< HEAD
     main()
+=======
+    main()
+>>>>>>> a73a515400a1f55f91ecb23ba8bd8f7725ae5880
