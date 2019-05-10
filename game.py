@@ -4,19 +4,19 @@ import time
 pygame.init()
 
 class Player():
-    def __init__(self):
+    def __init__(self,x,y):
         self.shooting = False
         self.facing_west = False
         self.at_western_edge = False
         self.at_eastern_edge = False
         self.at_northern_edge = False
         self.at_southern_edge = False
-        self.x = 500
-        self.y = 335
+        self.x = x
+        self.y = y
 
 def main(): 
     screen = pygame.display.set_mode((1032, 835))
-    font =  pygame.font.SysFont("Sans-Serif",32)
+    font =  pygame.font.SysFont("impact",23)
     done = False
     x = 500
     y = 335
@@ -42,7 +42,7 @@ def main():
     r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
     r_bullet_image = pygame.image.load('images/r_bullet_image.png')
     bullet_image = pygame.image.load('images/bullet_image.png')
-    pygame.mixer.music.load('west.ogg')
+    pygame.mixer.music.load('thegbu.ogg')
     pygame.mixer.music.play(-1)
 
     bullets = []
@@ -87,13 +87,12 @@ def main():
         curr_time = time.time()
         timer = font.render(f"Timer: {hour}:{min}:{int(seconds)}",True,(255,255,255))
     
-    
         p1_score_text = font.render(f"P1 Score: {p1_score_counter}",True,(255,0,0))
         p2_score_text = font.render(f"P2 Score: {p2_score_counter}",True,(0,0,255))
 
-        pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(20, 0, 1000, 30))
-        screen.blit(p1_score_text,(870,0))
-        screen.blit(p2_score_text,(40,0))
+        pygame.draw.rect(screen, (0, 0,0), pygame.Rect(20, 0, 1000, 30))
+        screen.blit(p1_score_text,(870,4))
+        screen.blit(p2_score_text,(40,4))
         screen.blit(timer,(475,0))
 
         pressed = pygame.key.get_pressed()
@@ -248,6 +247,6 @@ def main():
         clock.tick(60)
 
 if __name__ == "__main__":
-    p1 = Player()
-    p2 = Player()
+    p1 = Player(60,400)
+    p2 = Player(952,400)
     main()
