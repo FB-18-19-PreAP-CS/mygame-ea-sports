@@ -42,8 +42,9 @@ def main():
     r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
     r_bullet_image = pygame.image.load('images/r_bullet_image.png')
     bullet_image = pygame.image.load('images/bullet_image.png')
-    pygame.mixer.music.load('west.ogg')
+    pygame.mixer.music.load('thegbu.ogg')
     pygame.mixer.music.play(-1)
+ 
     bullets = []
     bullets2 = []
     walk_images = []
