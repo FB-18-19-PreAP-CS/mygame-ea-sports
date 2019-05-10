@@ -4,19 +4,19 @@ import time
 pygame.init()
 
 class Player():
-    def __init__(self):
+    def __init__(self,x,y):
         self.shooting = False
         self.facing_west = False
         self.at_western_edge = False
         self.at_eastern_edge = False
         self.at_northern_edge = False
         self.at_southern_edge = False
-        self.x = 500
-        self.y = 335
+        self.x = x
+        self.y = y
 
 def main(): 
     screen = pygame.display.set_mode((1032, 835))
-    font =  pygame.font.SysFont("Sans-Serif",32)
+    font =  pygame.font.SysFont("impact",23)
     done = False
     x = 500
     y = 335
@@ -246,6 +246,6 @@ def main():
         clock.tick(60)
 
 if __name__ == "__main__":
-    p1 = Player()
-    p2 = Player()
+    p1 = Player(60,400)
+    p2 = Player(952,400)
     main()
