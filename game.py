@@ -37,7 +37,7 @@ def main():
     at_eastern_edge = False
     at_northern_edge = False
     at_southern_edge = False
-    backround = pygame.image.load('smoothbg.png')
+    backround = pygame.image.load('hitbox bg.png')
     idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0.png')
     r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
     r_bullet_image = pygame.image.load('images/r_bullet_image.png')
