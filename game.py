@@ -14,7 +14,7 @@ class Player():
         self.x = 500
         self.y = 335
         self.width = 10
-        self.height = 40
+        self.height = 50
 
 def clear_bullets(bullets):
     bullets2 = []
@@ -141,7 +141,7 @@ def main():
                 screen.blit(shooting_images[shoot_anim%4],(p1.x,p1.y))
             if sec >= .5:
                 if pressed[pygame.K_q]:
-                    bullets.append(['e',p1.x+10,p1.y+35])
+                    bullets.append(['e',p1.x,p1.y+35])
                 else:
                     bullets.append(['w',p1.x+30,p1.y+35])
                 o_time = time.time()
@@ -205,7 +205,7 @@ def main():
                 screen.blit(shooting_images[shoot_anim%4],(p2.x,p2.y))
             if sec >= .5:
                 if pressed[pygame.K_y]:
-                    bullets.append(['e',p2.x+10,p2.y+35])
+                    bullets.append(['e',p2.x,p2.y+35])
                 else:
                     bullets.append(['w',p2.x+30,p2.y+35])
                 o_time = time.time()
