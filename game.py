@@ -11,8 +11,8 @@ class Player():
         self.at_eastern_edge = False
         self.at_northern_edge = False
         self.at_southern_edge = False
-        self.x = 500
-        self.y = 335
+        self.x = x
+        self.y = y
         self.width = 10
         self.height = 50
 
