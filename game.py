@@ -4,7 +4,7 @@ import time
 pygame.init()
 
 class Player():
-    def __init__(self,x,y):
+    def __init__(self,x,y,score):
         self.shooting = False
         self.facing_west = False
         self.at_western_edge = False
@@ -15,6 +15,17 @@ class Player():
         self.y = y
         self.width = 10
         self.height = 50
+        self.health = 3
+        self.alive = True
+        self.score = score
+
+    def check_dead():
+        if self.health == 0:
+            self.alive == False
+
+    def hit():
+        self.health -= 1
+        self.check_dead()
 
 def clear_bullets(bullets):
     bullets2 = []
@@ -114,8 +125,8 @@ def main():
         screen.blit(p1_score_text,(870,0))
         screen.blit(p2_score_text,(40,0))
         screen.blit(timer,(475,0))
-
-        pressed = pygame.key.get_pressed()
+        if p1.alive == True and p2.alive == True:
+            pressed = pygame.key.get_pressed()
 
         for i in range(len(bullets)):
             if bullets[i][1] > 1032:
@@ -135,6 +146,18 @@ def main():
                 if bullets[i][0] == 'e':
                     screen.blit(r_bullet_image,(bullets[i][1],bullets[i][2]))
         clear_bullets(bullets)
+
+        if p1.alive == False or p2.alive == False:
+            if p1.alive == False:
+                p2.score += 1
+            if p2.alive == False:
+                p1.score += 1
+            t1 = time.time()
+            t2 = time.time()
+            while (t2 - t1) > 10:
+                t2 = time.time()
+            
+            
         
         if pressed[pygame.K_q] or pressed[pygame.K_e]:
             f += .20
@@ -267,6 +290,6 @@ def main():
         clock.tick(60)
 
 if __name__ == "__main__":
-    p1 = Player(60,400)
-    p2 = Player(952,400)
+    p1 = Player(60,400,0)
+    p2 = Player(952,400,0)
     main()
