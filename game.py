@@ -14,11 +14,32 @@ class Player():
         self.at_southern_edge = False
         self.x = 500
         self.y = 335
-
+        
+def intro():
+    menu_screen = pygame.display.set_mode((900,636))
+    menu_background = pygame.image.load('new_grand_canyon.png')
+    done2 = False
+    while not done2:
+        menu_screen.blit(menu_background,(0,0))
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                done2 = True
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x,y = pygame.mouse.get_pos()
+                if x > 291 and x < 558:
+                    if y > 248 and y < 338:
+                        done2 = False
+                        return False
+                if x > 290 and x < 560:
+                    if y > 373 and y < 457:
+                        done2 = False
+                        return True
+        pygame.display.flip()
 def main(): 
-    screen = pygame.display.set_mode((516*2, 418*2))
-    font =  pygame.font.SysFont("Sans-Serif",30)
-    done = False
+    done = intro()
+    screen = pygame.display.set_mode((1032, 835))
+    font =  pygame.font.SysFont("Impact",23)
+
     x = 500
     y = 335
     clock = pygame.time.Clock()
@@ -43,10 +64,12 @@ def main():
     r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
     r_bullet_image = pygame.image.load('images/r_bullet_image.png')
     bullet_image = pygame.image.load('images/bullet_image.png')
+    pygame.mixer.music.load('west.ogg')
+    pygame.mixer.music.play(-1)
+    gun_effect = pygame.mixer.Sound('gun_shot.wav')
 
     bullets = []
     bullets2 = []
-
 
 
     walk_images = []
@@ -61,7 +84,7 @@ def main():
         walk_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_walk with gun_{i}.png'))
     for i in range(4):
         shooting_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_shoot_{i}.png'))
-
+                
     while not done:
         c_time = time.time()
 
@@ -84,14 +107,18 @@ def main():
             seconds = 0
             cur_time = 0
             orig_time = time.time()
-
+        
         curr_time = time.time()
-        timer = font.render(f"Timer: {hour}:{min}:{int(seconds)}",True,(0,0,0))
-        p2_score_text = font.render(f"P2 Score: {p2_score_counter}",True,(255,0,0))
-        p1_score_text = font.render(f"P1 Score: {p1_score_counter}",True,(0,0,255))
+        timer = font.render(f"Timer: {hour}:{min}:{int(seconds)}",True,(255,255,255))
+    
+        p1_score_text = font.render(f"P1 Score: {p1_score_counter}",True,(255,0,0))
+        p2_score_text = font.render(f"P2 Score: {p2_score_counter}",True,(0,0,255))
+
+        pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(20, 0, 1000, 30))
+        screen.blit(p1_score_text,(870,0))
+        screen.blit(p2_score_text,(40,0))
         screen.blit(timer,(475,0))
-        screen.blit(p2_score_text,(870,0))
-        screen.blit(p1_score_text,(40,0))
+
 
         pressed = pygame.key.get_pressed()
 
@@ -117,6 +144,7 @@ def main():
 
         if pressed[pygame.K_q] or pressed[pygame.K_e]:
             f += .20
+            gun_effect.play()
             p1.shooting = True
             shoot_anim = int(f)
             if pressed[pygame.K_q]:
@@ -181,6 +209,7 @@ def main():
                 
         if pressed[pygame.K_y] or pressed[pygame.K_i]:
             f += .20
+            gun_effect.play()
             p2.shooting = True
             shoot_anim = int(f)
             if pressed[pygame.K_y]:
