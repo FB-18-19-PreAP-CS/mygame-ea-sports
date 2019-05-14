@@ -248,8 +248,4 @@ def main():
 if __name__ == "__main__":
     p1 = Player(60,400)
     p2 = Player(952,400)
-<<<<<<< HEAD
     main()
-=======
-    main()
->>>>>>> a73a515400a1f55f91ecb23ba8bd8f7725ae5880
