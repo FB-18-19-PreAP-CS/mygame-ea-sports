@@ -42,6 +42,9 @@ def main():
     r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
     r_bullet_image = pygame.image.load('images/r_bullet_image.png')
     bullet_image = pygame.image.load('images/bullet_image.png')
+    hearts = pygame.image.load('hear.png')
+    dead_hearts = pygame.image.load('dead.png')
+
     pygame.mixer.music.load('thegbu.ogg')
     pygame.mixer.music.play(-1)
  
@@ -93,6 +96,15 @@ def main():
         screen.blit(p1_score_text,(870,4))
         screen.blit(p2_score_text,(40,4))
         screen.blit(timer,(475,0))
+
+        screen.blit(hearts,(200,0)) #p1
+        screen.blit(hearts,(160,0)) #p1
+        screen.blit(hearts,(180,0)) #p1
+
+        screen.blit(hearts,(820,0))
+        screen.blit(hearts,(800,0))
+        screen.blit(hearts,(780,0))
+
 
         pressed = pygame.key.get_pressed()
 
