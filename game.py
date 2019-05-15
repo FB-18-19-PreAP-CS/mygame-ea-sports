@@ -61,7 +61,8 @@ def check_bullets(bullet_list,hitboxes):
 
 def main(): 
     done = intro()
-    screen = pygame.display.set_mode((1032, 835))
+    if done == False:
+        screen = pygame.display.set_mode((1032, 835))
     font =  pygame.font.SysFont("impact",23)
     clock = pygame.time.Clock()
     walk_anim = 0
