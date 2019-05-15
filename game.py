@@ -81,7 +81,7 @@ def main():
         shooting_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_shoot_{i}.png'))
 
     while not done:
-        hitboxes = [(p1.x,p1.y,p1.width,p1.height,'p'),(p2.x,p2.y,p2.width,p2.height,'p')]
+        hitboxes = [(p1.x,p1.y,p1.width,p1.height,'p'),(p2.x,p2.y,p2.width,p2.height,'p'), (168,633,82,75,'o'), (669,178,72,82,'o'), (757,484,66,71,'o'), (500,353,31,103,'o'), (235,174,63,86,'o')]
         c_time = time.time()
 
         p1.shooting = False
