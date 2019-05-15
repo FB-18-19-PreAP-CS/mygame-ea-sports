@@ -127,8 +127,8 @@ def main():
         p2_score_text = font.render(f"P2 Score: {p2_score_counter}",True,(0,0,255))
 
         pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(20, 0, 1000, 30))
-        screen.blit(p1_score_text,(870,0))
-        screen.blit(p2_score_text,(40,0))
+        screen.blit(p1_score_text,(40,0))
+        screen.blit(p2_score_text,(870,0))
         screen.blit(timer,(475,0)) 
         # if p1.alive == True and p2.alive == True:
         pressed = pygame.key.get_pressed()
