@@ -4,7 +4,7 @@ import time
 pygame.init()
 
 class Player():
-    def __init__(self,x,y,score):
+    def __init__(self,x,y):
         self.shooting = False
         self.facing_west = False
         self.at_western_edge = False
@@ -17,7 +17,6 @@ class Player():
         self.height = 50
         self.health = 3
         self.alive = True
-        self.score = score
 
     def check_dead(self):
         if self.health == 0:
@@ -52,7 +51,9 @@ def check_bullets(bullet_list,hitboxes,p1,p2):
                             p2.hit()
                             p2.check_dead()
 
-def main(): 
+def main():
+    p1 = Player(60,400)
+    p2 = Player(952,400)
     screen = pygame.display.set_mode((1032, 835))
     font =  pygame.font.SysFont("impact",23)
     done = False
@@ -128,9 +129,9 @@ def main():
         pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(20, 0, 1000, 30))
         screen.blit(p1_score_text,(870,0))
         screen.blit(p2_score_text,(40,0))
-        screen.blit(timer,(475,0))
-        if p1.alive == True and p2.alive == True:
-            pressed = pygame.key.get_pressed()
+        screen.blit(timer,(475,0)) 
+        # if p1.alive == True and p2.alive == True:
+        pressed = pygame.key.get_pressed()
 
         for i in range(len(bullets)):
             if bullets[i][1] > 1032:
@@ -153,15 +154,16 @@ def main():
         
         if p1.alive == False or p2.alive == False:
             if p1.alive == False:
-                p2.score += 1
+                p2_score_counter += 1
             if p2.alive == False:
-                p1.score += 1
+                p1_score_counter += 1
             t1 = time.time()
             t2 = time.time()
-            while (t2 - t1) > 10:
+            while (t2 - t1) < 10:
+                print(t2-t1)
                 t2 = time.time()
-                if pressed[pygame.K_SPACE]:
-                    p1 = Player() 
+            p1 = Player(60,400)
+            p2 = Player(952,400)
           
         if pressed[pygame.K_q] or pressed[pygame.K_e]:
             f += .20
@@ -294,6 +296,4 @@ def main():
         clock.tick(60)
 
 if __name__ == "__main__":
-    p1 = Player(60,400,0)
-    p2 = Player(952,400,0)
     main()
