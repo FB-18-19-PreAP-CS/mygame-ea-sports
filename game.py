@@ -13,13 +13,50 @@ class Player():
         self.at_southern_edge = False
         self.x = x
         self.y = y
+        self.width = 10
+        self.height = 50
+        self.health = 3
+        self.alive = True
 
-def main(): 
+    def check_dead(self):
+        if self.health == 0:
+            self.alive = False
+
+    def hit(self):
+        self.health -= 1
+
+def clear_bullets(bullets):
+    bullets2 = []
+    for i in range(len(bullets)):
+            if bullets[i][1] != 0:
+                bullets2.append(bullets[i])
+    bullets.clear()
+    for i in range(len(bullets2)):
+        bullets.append(bullets2[i])
+    bullets2.clear()
+
+def check_bullets(bullet_list,hitboxes,p1,p2):
+    for i in range(len(bullet_list)):
+        for hitbox in hitboxes:
+            if bullet_list[i][1] >= hitbox[0] and bullet_list[i][1] <= (hitbox[0] + hitbox[2]):
+                if bullet_list[i][2] <= (hitbox[1] + hitbox[3]) and bullet_list[i][2] >= hitbox[1]:
+                    if hitbox[4] == 'o':
+                        bullet_list[i] = [0,0,0]
+                    if 'p' in hitbox[4]:
+                        bullet_list[i] = [0,0,0]
+                        if hitbox[4] == 'p1':
+                            p1.hit()
+                            p1.check_dead()
+                        if hitbox[4] == 'p2':
+                            p2.hit()
+                            p2.check_dead()
+
+def main():
+    p1 = Player(60,400)
+    p2 = Player(952,400)
     screen = pygame.display.set_mode((1032, 835))
     font =  pygame.font.SysFont("impact",23)
     done = False
-    x = 500
-    y = 335
     clock = pygame.time.Clock()
     walk_anim = 0
     f = 0
@@ -49,7 +86,6 @@ def main():
     pygame.mixer.music.play(-1)
  
     bullets = []
-    bullets2 = []
     walk_images = []
     r_walk_images = []
     r_shooting_images = []
@@ -64,6 +100,7 @@ def main():
         shooting_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_shoot_{i}.png'))
 
     while not done:
+        hitboxes = [(p1.x,p1.y,p1.width,p1.height,'p1'),(p2.x,p2.y,p2.width,p2.height,'p1'), (168,633,82,75,'o'), (669,170,72,82,'o'), (757,472,66,71,'o'), (500,353,31,103,'o'), (235,170,63,55,'o')]
         c_time = time.time()
 
         p1.shooting = False
@@ -91,7 +128,7 @@ def main():
 
         p1_score_text = font.render(f"P1 Score: {p1_score_counter}",True,(255,0,0))
         p2_score_text = font.render(f"P2 Score: {p2_score_counter}",True,(0,0,255))
-
+        
         pygame.draw.rect(screen, (0, 0,0), pygame.Rect(20, 0, 1000, 30))
         screen.blit(p1_score_text,(870,4))
         screen.blit(p2_score_text,(40,4))
@@ -104,8 +141,6 @@ def main():
         screen.blit(hearts,(820,0))
         screen.blit(hearts,(800,0))
         screen.blit(hearts,(780,0))
-
-
         pressed = pygame.key.get_pressed()
 
         for i in range(len(bullets)):
@@ -114,19 +149,33 @@ def main():
             if bullets[i][1] < 0:
                 bullets[i] = [0,0,0]
             if bullets[i][0] == 'w':
-                bullets[i][1] += 20
-                screen.blit(bullet_image,(bullets[i][1],bullets[i][2]))
+                for j in range(20):
+                    bullets[i][1] += 1
+                    check_bullets(bullets,hitboxes,p1,p2)
+                if bullets[i][0] == 'w':
+                    screen.blit(bullet_image,(bullets[i][1],bullets[i][2]))
             if bullets[i][0] == 'e':
-                bullets[i][1] -= 20
-                screen.blit(r_bullet_image,(bullets[i][1],bullets[i][2]))
-        for i in range(len(bullets)):
-            if bullets[i][1] != 0:
-                bullets2.append(bullets[i])
-        bullets.clear()
-        for i in range(len(bullets2)):
-            bullets.append(bullets2[i])
-        bullets2.clear()
-
+                for j in range(20):
+                    bullets[i][1] -= 1
+                    check_bullets(bullets,hitboxes,p1,p2)
+                if bullets[i][0] == 'e':
+                    screen.blit(r_bullet_image,(bullets[i][1],bullets[i][2]))
+        clear_bullets(bullets)
+        
+        if p1.alive == False or p2.alive == False:
+            bullets.clear()
+            if p1.alive == False:
+                p2_score_counter += 1
+            if p2.alive == False:
+                p1_score_counter += 1
+            t1 = time.time()
+            t2 = time.time()
+            while (t2 - t1) < 10:
+                print(t2-t1)
+                t2 = time.time()
+            p1 = Player(60,400)
+            p2 = Player(952,400)
+          
         if pressed[pygame.K_q] or pressed[pygame.K_e]:
             f += .20
             p1.shooting = True
@@ -137,7 +186,7 @@ def main():
                 screen.blit(shooting_images[shoot_anim%4],(p1.x,p1.y))
             if sec >= .5:
                 if pressed[pygame.K_q]:
-                    bullets.append(['e',p1.x+10,p1.y+35])
+                    bullets.append(['e',p1.x,p1.y+35])
                 else:
                     bullets.append(['w',p1.x+30,p1.y+35])
                 o_time = time.time()
@@ -201,7 +250,7 @@ def main():
                 screen.blit(shooting_images[shoot_anim%4],(p2.x,p2.y))
             if sec >= .5:
                 if pressed[pygame.K_KP7]:
-                    bullets.append(['e',p2.x+10,p2.y+35])
+                    bullets.append(['e',p2.x-5,p2.y+35])
                 else:
                     bullets.append(['w',p2.x+30,p2.y+35])
                 o_time = time.time()
@@ -258,6 +307,4 @@ def main():
         clock.tick(60)
 
 if __name__ == "__main__":
-    p1 = Player(60,400)
-    p2 = Player(952,400)
     main()
