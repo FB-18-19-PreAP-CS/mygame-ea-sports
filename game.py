@@ -18,8 +18,8 @@ class Player():
         self.height = 50
 
 def intro():
-    menu_screen = pygame.display.set_mode((900,636))
-    menu_background = pygame.image.load('new_grand_canyon.png')
+    menu_screen = pygame.display.set_mode((900,639))
+    menu_background = pygame.image.load('grand_canyon.png')
     done2 = False
     while not done2:
         menu_screen.blit(menu_background,(0,0))
@@ -28,12 +28,12 @@ def intro():
                 done2 = True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x,y = pygame.mouse.get_pos()
-                if x > 291 and x < 558:
-                    if y > 248 and y < 338:
+                if x > 324 and x < 559:
+                    if y > 206 and y < 288:
                         done2 = False
                         return False
-                if x > 290 and x < 560:
-                    if y > 373 and y < 457:
+                if x > 329 and x < 563:
+                    if y > 421 and y < 492:
                         done2 = False
                         return True
         pygame.display.flip()
