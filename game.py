@@ -97,7 +97,7 @@ def main():
         shooting_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_shoot_{i}.png'))
 
     while not done:
-        hitboxes = [(p1.x,p1.y,p1.width,p1.height,'p1'),(p2.x,p2.y,p2.width,p2.height,'p2'), (168,633,82,75,'o'), (669,170,72,82,'o'), (757,472,66,71,'o'), (500,353,31,103,'o'), (235,170,63,55,'o')]
+        hitboxes = [(p1.x,p1.y,p1.width,p1.height,'p1'),(p2.x,p2.y,p2.width,p2.height,'p1'), (168,633,82,75,'o'), (669,170,72,82,'o'), (757,472,66,71,'o'), (500,353,31,103,'o'), (235,170,63,55,'o')]
         c_time = time.time()
 
         p1.shooting = False
@@ -127,8 +127,8 @@ def main():
         p2_score_text = font.render(f"P2 Score: {p2_score_counter}",True,(0,0,255))
 
         pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(20, 0, 1000, 30))
-        screen.blit(p1_score_text,(40,0))
-        screen.blit(p2_score_text,(870,0))
+        screen.blit(p1_score_text,(870,0))
+        screen.blit(p2_score_text,(40,0))
         screen.blit(timer,(475,0)) 
         # if p1.alive == True and p2.alive == True:
         pressed = pygame.key.get_pressed()
@@ -153,6 +153,7 @@ def main():
         clear_bullets(bullets)
         
         if p1.alive == False or p2.alive == False:
+            bullets.clear()
             if p1.alive == False:
                 p2_score_counter += 1
             if p2.alive == False:
