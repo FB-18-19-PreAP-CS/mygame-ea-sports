@@ -104,7 +104,7 @@ def main():
         screen.blit(hearts,(820,0))
         screen.blit(hearts,(800,0))
         screen.blit(hearts,(780,0))
-
+        #screen.blit(dead_hearts,(780,0))
 
         pressed = pygame.key.get_pressed()
 
