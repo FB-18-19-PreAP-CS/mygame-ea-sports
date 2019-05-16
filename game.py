@@ -79,6 +79,9 @@ def main():
     r_idle_image = pygame.image.load('images/Cowboy 4 HiRes/Cowboy4_idle with gun_0_reverse.png')
     r_bullet_image = pygame.image.load('images/r_bullet_image.png')
     bullet_image = pygame.image.load('images/bullet_image.png')
+    hearts = pygame.image.load('hear.png')
+    dead_hearts = pygame.image.load('dead.png')
+
     pygame.mixer.music.load('thegbu.ogg')
     pygame.mixer.music.play(-1)
  
@@ -122,15 +125,22 @@ def main():
 
         curr_time = time.time()
         timer = font.render(f"Timer: {hour}:{min}:{int(seconds)}",True,(255,255,255))
-   
+
         p1_score_text = font.render(f"P1 Score: {p1_score_counter}",True,(255,0,0))
         p2_score_text = font.render(f"P2 Score: {p2_score_counter}",True,(0,0,255))
+        
+        pygame.draw.rect(screen, (0, 0,0), pygame.Rect(20, 0, 1000, 30))
+        screen.blit(p1_score_text,(870,4))
+        screen.blit(p2_score_text,(40,4))
+        screen.blit(timer,(475,0))
 
-        pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(20, 0, 1000, 30))
-        screen.blit(p1_score_text,(870,0))
-        screen.blit(p2_score_text,(40,0))
-        screen.blit(timer,(475,0)) 
-        # if p1.alive == True and p2.alive == True:
+        screen.blit(hearts,(200,0)) #p1
+        screen.blit(hearts,(160,0)) #p1
+        screen.blit(hearts,(180,0)) #p1
+
+        screen.blit(hearts,(820,0))
+        screen.blit(hearts,(800,0))
+        screen.blit(hearts,(780,0))
         pressed = pygame.key.get_pressed()
 
         for i in range(len(bullets)):
