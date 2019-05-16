@@ -124,7 +124,7 @@ def main():
         shooting_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_shoot_{i}.png'))
                 
     while not done:
-        hitboxes = [(p1.x,p1.y,p1.width,p1.height,'p1'),(p2.x,p2.y,p2.width,p2.height,'p1'), (168,633,82,75,'o'), (669,170,72,82,'o'), (757,472,66,71,'o'), (500,353,31,103,'o'), (235,170,63,55,'o')]
+        hitboxes = [(p1.x,p1.y,p1.width,p1.height,'p1'),(p2.x,p2.y,p2.width,p2.height,'p2'), (168,633,82,75,'o'), (669,170,72,82,'o'), (757,472,66,71,'o'), (500,353,31,103,'o'), (235,170,63,55,'o')]
         c_time = time.time()
 
         p1.shooting = False
@@ -158,13 +158,20 @@ def main():
         screen.blit(p2_score_text,(40,4))
         screen.blit(timer,(475,0))
 
-        screen.blit(hearts,(200,0)) #p1
-        screen.blit(hearts,(160,0)) #p1
-        screen.blit(hearts,(180,0)) #p1
+        for i in range(p1.health):
+            screen.blit(hearts,(200-(i*20),0)) #p1
 
-        screen.blit(hearts,(820,0))
-        screen.blit(hearts,(800,0))
-        screen.blit(hearts,(780,0))
+        for i in range(p2.health):
+            screen.blit(hearts,(820-(i*20),0)) #p2
+
+        if p1.health != 3:
+            for j in range(3-p1.health):
+                screen.blit(dead_hearts,(160+(j*20),0))
+        if p2.health != 3:
+            for j in range(3-p2.health):
+                screen.blit(dead_hearts,(780+(j*20),0))
+            
+
         pressed = pygame.key.get_pressed()
 
         for i in range(len(bullets)):
