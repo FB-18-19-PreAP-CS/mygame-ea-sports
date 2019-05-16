@@ -3,6 +3,7 @@ import time
 
 pygame.init()
 
+
 class Player():
     def __init__(self,x,y):
         self.shooting = False
@@ -24,6 +25,27 @@ class Player():
 
     def hit(self):
         self.health -= 1
+
+def intro():
+    menu_screen = pygame.display.set_mode((900,639))
+    menu_background = pygame.image.load('grand_canyon.png')
+    done2 = False
+    while not done2:
+        menu_screen.blit(menu_background,(0,0))
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                done2 = True
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x,y = pygame.mouse.get_pos()
+                if x > 324 and x < 559:
+                    if y > 206 and y < 288:
+                        done2 = False
+                        return False
+                if x > 329 and x < 563:
+                    if y > 421 and y < 492:
+                        done2 = False
+                        return True
+        pygame.display.flip()
 
 def clear_bullets(bullets):
     bullets2 = []
@@ -51,12 +73,14 @@ def check_bullets(bullet_list,hitboxes,p1,p2):
                             p2.hit()
                             p2.check_dead()
 
-def main():
+
+def main(): 
     p1 = Player(60,400)
     p2 = Player(952,400)
-    screen = pygame.display.set_mode((1032, 835))
+    done = intro()
+    if done == False:
+        screen = pygame.display.set_mode((1032, 835))
     font =  pygame.font.SysFont("impact",23)
-    done = False
     clock = pygame.time.Clock()
     walk_anim = 0
     f = 0
@@ -98,7 +122,7 @@ def main():
         walk_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_walk with gun_{i}.png'))
     for i in range(4):
         shooting_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_shoot_{i}.png'))
-
+                
     while not done:
         hitboxes = [(p1.x,p1.y,p1.width,p1.height,'p1'),(p2.x,p2.y,p2.width,p2.height,'p1'), (168,633,82,75,'o'), (669,170,72,82,'o'), (757,472,66,71,'o'), (500,353,31,103,'o'), (235,170,63,55,'o')]
         c_time = time.time()
@@ -122,7 +146,7 @@ def main():
             seconds = 0
             cur_time = 0
             orig_time = time.time()
-
+        
         curr_time = time.time()
         timer = font.render(f"Timer: {hour}:{min}:{int(seconds)}",True,(255,255,255))
 
