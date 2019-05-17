@@ -37,7 +37,8 @@ def intro():
                 done2 = True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x,y = pygame.mouse.get_pos()
-                if x > 324 and x < 559:
+                print(x,y)
+                if x > 324 and x < 561:
                     if y > 206 and y < 288:
                         done2 = False
                         return False
@@ -45,7 +46,16 @@ def intro():
                     if y > 421 and y < 492:
                         done2 = False
                         return True
+                if x > 327 and x < 561:
+                    if y > 313 and y < 391:
+                        done2 = False
+                        return True
         pygame.display.flip()
+'''
+def how_to_play():
+    htp_screen = pygame.display.set_mode(())
+    htp_background = pygame.image.load('western_town.png')
+'''
 
 def clear_bullets(bullets):
     bullets2 = []
@@ -77,9 +87,14 @@ def check_bullets(bullet_list,hitboxes,p1,p2):
 def main(): 
     p1 = Player(60,400)
     p2 = Player(952,400)
-    done = intro()
-    if done == False:
-        screen = pygame.display.set_mode((1032, 835))
+    done = 'not done'
+    while done != 'done':
+        done = intro()
+        if done == False:
+            screen = pygame.display.set_mode((1032, 835))
+            done = 'done'
+        if done == True:
+            how_to_play()
     font =  pygame.font.SysFont("impact",23)
     clock = pygame.time.Clock()
     walk_anim = 0
