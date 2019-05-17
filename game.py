@@ -247,7 +247,7 @@ def main():
                 screen.blit(r_idle_image,(p1.x,p1.y))
             else:
                 screen.blit(idle_image,(p1.x,p1.y))
-        if pressed[pygame.K_w] and not p1.shooting: 
+        if (pressed[pygame.K_w] and not p1.shooting) and p1.alive == True: 
             if p1.y < 0:
                 p1.at_northern_edge = True
             else:
