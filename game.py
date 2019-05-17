@@ -255,14 +255,22 @@ def main():
                 if not p1.at_northern_edge:
                     p1.y -= 3
                     p1.at_southern_edge = False
+<<<<<<< HEAD
         if pressed[pygame.K_s] and not p1.shooting: 
+=======
+        elif (pressed[pygame.K_s] and not p1.shooting) and p1.alive == True: 
+>>>>>>> 44cc0e85b445d210c06f42367d32dd41ee11d8f1
             if p1.y > 715:
                 p1.at_southern_edge = True
             else:
                 if not p1.at_southern_edge:
                     p1.y += 3 
                     p1.at_northern_edge = False
+<<<<<<< HEAD
         if pressed[pygame.K_a] and not p1.shooting: 
+=======
+        elif (pressed[pygame.K_a] and not p1.shooting) and p1.alive == True: 
+>>>>>>> 44cc0e85b445d210c06f42367d32dd41ee11d8f1
             if  p1.x < 0:
                 p1.facing_west = True
                 p1.at_western_edge = True
@@ -271,7 +279,11 @@ def main():
                     p1.x -= 3
                     p1.at_eastern_edge = False
                 p1.facing_west = True
+<<<<<<< HEAD
         if pressed[pygame.K_d] and not p1.shooting: 
+=======
+        elif (pressed[pygame.K_d] and not p1.shooting) and p1.alive == True: 
+>>>>>>> 44cc0e85b445d210c06f42367d32dd41ee11d8f1
             if p1.x > 990:
                 p1.at_eastern_edge = True
             else:
@@ -319,14 +331,22 @@ def main():
                 if not p2.at_northern_edge:
                     p2.y -= 3
                     p2.at_southern_edge = False
+<<<<<<< HEAD
         if pressed[pygame.K_KP5] and not p2.shooting: 
+=======
+        elif (pressed[pygame.K_KP5] and not p2.shooting) and p2.alive == True: 
+>>>>>>> 44cc0e85b445d210c06f42367d32dd41ee11d8f1
             if p2.y > 715:
                 p2.at_southern_edge = True
             else:
                 if not p2.at_southern_edge:
                     p2.y += 3 
                     p2.at_northern_edge = False
+<<<<<<< HEAD
         if pressed[pygame.K_KP4] and not p2.shooting: 
+=======
+        elif (pressed[pygame.K_KP4] and not p2.shooting) and p2.alive == True: 
+>>>>>>> 44cc0e85b445d210c06f42367d32dd41ee11d8f1
             if  p2.x < 0:
                 p2.facing_west = True
                 p2.at_western_edge = True
@@ -335,7 +355,11 @@ def main():
                     p2.x -= 3
                     p2.at_eastern_edge = False
                 p2.facing_west = True
+<<<<<<< HEAD
         if pressed[pygame.K_KP6] and not p2.shooting: 
+=======
+        elif (pressed[pygame.K_KP6] and not p2.shooting) and p2.alive == True: 
+>>>>>>> 44cc0e85b445d210c06f42367d32dd41ee11d8f1
             if p2.x > 990:
                 p2.at_eastern_edge = True
             else:
