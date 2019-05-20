@@ -107,6 +107,7 @@ def main():
     dead_hearts = pygame.image.load('dead.png')
     game_end_time = 10
     is_t1 = False
+    is_scored = False
 
     pygame.mixer.music.load('thegbu.ogg')
     pygame.mixer.music.play(-1)
@@ -198,15 +199,17 @@ def main():
         
         if p1.alive == False or p2.alive == False:
             bullets.clear()
-            if p1.alive == False:
+            if p1.alive == False and is_scored == False:
                 p2_score_counter += 1
-            if p2.alive == False:
+                is_scored = True
+            if p2.alive == False and is_scored == False:
                 p1_score_counter += 1
+                is_scored = True
             if is_t1 == False:
                 t1 = time.time()
                 is_t1 = True
             t2 = time.time()
-            screen.blit(game_end,(576,200))
+            screen.blit(game_end,(550,200))
             if (t2 - t1) > 1:
                 game_end_time -= 1
                 is_t1 = False
@@ -214,6 +217,8 @@ def main():
                 p1 = Player(60,400)
                 p2 = Player(952,400)
                 is_t1 = False
+                is_scored = False
+                game_end_time = 10
           
         if pressed[pygame.K_q] or pressed[pygame.K_e]:
             f += .20
