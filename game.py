@@ -143,6 +143,7 @@ def main():
         c_time = time.time()
         game_end = font.render(f"{game_end_time}",True,(255,255,255))
         winner_text = font.render(f"{winner}",True,color)
+        next_round = font.render(f"Next Round Begins in:",True,(255,255,255))
 
         p1.shooting = False
         p2.shooting = False
@@ -222,8 +223,10 @@ def main():
                 t1 = time.time()
                 is_t1 = True
             t2 = time.time()
-            screen.blit(game_end,(510,200))
+            screen.blit(game_end,(590,200))
             screen.blit(winner_text,(450,175))
+            screen.blit(next_round,(370,200)) 
+
             if (t2 - t1) > 1:
                 game_end_time -= 1
                 is_t1 = False
