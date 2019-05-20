@@ -236,7 +236,7 @@ def main():
                 o_time = time.time()
                 c_time = time.time()
 
-        elif pressed[pygame.K_w] or pressed[pygame.K_s] or pressed[pygame.K_a] or pressed[pygame.K_d]:
+        elif (pressed[pygame.K_w] or pressed[pygame.K_s] or pressed[pygame.K_a] or pressed[pygame.K_d] and p1.alive == True):
             if pressed[pygame.K_a]:
                 f += .20
                 walk_anim = int(f)
@@ -259,14 +259,14 @@ def main():
                 if not p1.at_northern_edge:
                     p1.y -= 3
                     p1.at_southern_edge = False
-        elif pressed[pygame.K_s] and not p1.shooting: 
+        elif (pressed[pygame.K_s] and not p1.shooting) and p1.alive == True: 
             if p1.y > 715:
                 p1.at_southern_edge = True
             else:
                 if not p1.at_southern_edge:
                     p1.y += 3 
                     p1.at_northern_edge = False
-        elif pressed[pygame.K_a] and not p1.shooting: 
+        elif (pressed[pygame.K_a] and not p1.shooting) and p1.alive == True: 
             if  p1.x < 0:
                 p1.facing_west = True
                 p1.at_western_edge = True
@@ -275,7 +275,7 @@ def main():
                     p1.x -= 3
                     p1.at_eastern_edge = False
                 p1.facing_west = True
-        elif pressed[pygame.K_d] and not p1.shooting: 
+        elif (pressed[pygame.K_d] and not p1.shooting) and p1.alive == True: 
             if p1.x > 990:
                 p1.at_eastern_edge = True
             else:
@@ -284,7 +284,7 @@ def main():
                     p1.at_western_edge = False
                 p1.facing_west = False
                 
-        if pressed[pygame.K_KP7] or pressed[pygame.K_KP9]:
+        if (pressed[pygame.K_KP7] or pressed[pygame.K_KP9]) and p2.alive == True:
             f += .20
             p2.shooting = True
             shoot_anim = int(f)
@@ -300,7 +300,7 @@ def main():
                 o_time = time.time()
                 c_time = time.time()
 
-        elif pressed[pygame.K_KP4] or pressed[pygame.K_KP5] or pressed[pygame.K_KP6] or pressed[pygame.K_KP8]:
+        elif (pressed[pygame.K_KP4] or pressed[pygame.K_KP5] or pressed[pygame.K_KP6] or pressed[pygame.K_KP8]) and p2.alive == True:
             if pressed[pygame.K_KP4]:
                 f += .20
                 walk_anim = int(f)
@@ -323,14 +323,14 @@ def main():
                 if not p2.at_northern_edge:
                     p2.y -= 3
                     p2.at_southern_edge = False
-        elif pressed[pygame.K_KP5] and not p2.shooting: 
+        elif (pressed[pygame.K_KP5] and not p2.shooting) and p2.alive == True: 
             if p2.y > 715:
                 p2.at_southern_edge = True
             else:
                 if not p2.at_southern_edge:
                     p2.y += 3 
                     p2.at_northern_edge = False
-        elif pressed[pygame.K_KP4] and not p2.shooting: 
+        elif (pressed[pygame.K_KP4] and not p2.shooting) and p2.alive == True: 
             if  p2.x < 0:
                 p2.facing_west = True
                 p2.at_western_edge = True
@@ -339,7 +339,7 @@ def main():
                     p2.x -= 3
                     p2.at_eastern_edge = False
                 p2.facing_west = True
-        elif pressed[pygame.K_KP6] and not p2.shooting: 
+        elif (pressed[pygame.K_KP6] and not p2.shooting) and p2.alive == True: 
             if p2.x > 990:
                 p2.at_eastern_edge = True
             else:
