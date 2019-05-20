@@ -108,7 +108,9 @@ def main():
     game_end_time = 10
     is_t1 = False
     is_scored = False
-
+    win = 0
+    winner = "No Winner!"
+    color = (255,255,255)
     pygame.mixer.music.load('thegbu.ogg')
     pygame.mixer.music.play(-1)
  
@@ -127,9 +129,20 @@ def main():
         shooting_images.append(pygame.image.load(f'images/Cowboy 4 HiRes/Cowboy4_shoot_{i}.png'))
                 
     while not done:
+        if p1.alive == False:
+            win = 2
+        if p2.alive == False:
+            win = 1
+        if win == 1:
+            winner = "Player 1 Wins!"
+            color = (255,0,0)
+        if win == 2:
+            winner = "Player 2 Wins!"
+            color = (0,0,255)
         hitboxes = [(p1.x,p1.y,p1.width,p1.height,'p1'),(p2.x,p2.y,p2.width,p2.height,'p2'), (168,633,82,75,'o'), (669,170,72,82,'o'), (757,472,66,71,'o'), (500,353,31,103,'o'), (235,170,63,55,'o')]
         c_time = time.time()
         game_end = font.render(f"{game_end_time}",True,(255,255,255))
+        winner_text = font.render(f"{winner}",True,color)
 
         p1.shooting = False
         p2.shooting = False
@@ -210,6 +223,7 @@ def main():
                 is_t1 = True
             t2 = time.time()
             screen.blit(game_end,(510,200))
+            screen.blit(winner_text,(450,175))
             if (t2 - t1) > 1:
                 game_end_time -= 1
                 is_t1 = False
