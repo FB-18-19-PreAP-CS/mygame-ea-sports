@@ -209,7 +209,7 @@ def main():
                 t1 = time.time()
                 is_t1 = True
             t2 = time.time()
-            screen.blit(game_end,(550,200))
+            screen.blit(game_end,(510,200))
             if (t2 - t1) > 1:
                 game_end_time -= 1
                 is_t1 = False
