@@ -46,7 +46,7 @@
   Shoot your opponent to take  his lives away and be the first to win three rounds 
 
 # When does the game end:
-  The game ends once one of the player has won three rounds or when you press quit in the introduction menu.
+  The game ends once one of the players has won three rounds or when you press quit in the introduction menu.
   
 # Outside Sources:
   https://www.pygame.org/docs/tut/PygameIntro.html
