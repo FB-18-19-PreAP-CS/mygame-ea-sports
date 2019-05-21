@@ -1,6 +1,8 @@
 ## GAME MANUAL
 # Cowboy vs. Bandito
 
+![image](https://user-images.githubusercontent.com/43218149/58136420-95ae2c80-7bf3-11e9-9328-ba3b53c0e8e3.png)
+
 # General:
   The game takes place in an open desert field just outside of town sometime in the 1800's
   
