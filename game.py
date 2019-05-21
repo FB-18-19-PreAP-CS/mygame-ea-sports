@@ -37,15 +37,37 @@ def intro():
                 done2 = True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x,y = pygame.mouse.get_pos()
-                if x > 324 and x < 559:
+                if x > 324 and x < 561:
                     if y > 206 and y < 288:
                         done2 = False
                         return False
                 if x > 329 and x < 563:
                     if y > 421 and y < 492:
                         done2 = False
-                        return True
+                        return 'quit'
+                if x > 327 and x < 561:
+                    if y > 313 and y < 391:
+                        done2 = False
+                        return 'htp'
         pygame.display.flip()
+
+def how_to_play():
+    htp_done = False
+    htp_screen = pygame.display.set_mode((978,700))
+    htp_background = pygame.image.load('htp_screen.png')
+    while not htp_done:
+        htp_screen.blit(htp_background,(0,0))
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                htp_done = True
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x,y = pygame.mouse.get_pos()
+                if x > 831 and x < 946:
+                    if y > 10 and y < 65:
+                        htp_done = True
+
+        pygame.display.flip()
+
 
 def clear_bullets(bullets):
     bullets2 = []
@@ -77,9 +99,20 @@ def check_bullets(bullet_list,hitboxes,p1,p2):
 def main(): 
     p1 = Player(60,400)
     p2 = Player(952,400)
-    done = intro()
-    if done == False:
-        screen = pygame.display.set_mode((1032, 835))
+    done = True
+    while done:
+        if done:
+            done = intro()
+            if done == False:
+                screen = pygame.display.set_mode((1032, 835))        
+        if done == 'htp':
+            how_to_play()
+            done = True
+        if done == 'quit':
+            return
+
+
+    screen = pygame.display.set_mode((1032, 835))        
     font =  pygame.font.SysFont("impact",23)
     clock = pygame.time.Clock()
     walk_anim = 0
