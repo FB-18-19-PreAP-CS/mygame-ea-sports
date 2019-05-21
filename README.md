@@ -13,6 +13,8 @@
 # How to play:
   The person you pick can either be the cowboy or the bandito. Players can move up, down, and left, along with shooting left or right in an attempt to hit the other player. Each player has three hearts and once someone has been shot one heart will be taken away. When the player has lost all three hearts that means the opponent has won the round.
   
+ ![image](https://user-images.githubusercontent.com/43218149/58136575-2b49bc00-7bf4-11e9-9f4b-54f8b609f03f.png)
+
  Keybinds
  --
    Player1-
