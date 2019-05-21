@@ -110,9 +110,6 @@ def main():
             done = True
         if done == 'quit':
             return
-
-
-    screen = pygame.display.set_mode((1032, 835))        
     font =  pygame.font.SysFont("impact",23)
     clock = pygame.time.Clock()
     walk_anim = 0
