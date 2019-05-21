@@ -14,6 +14,7 @@
  Keybinds
  --
    Player1-
+   
     * Pressing w goes up
     
     * Pressing a goes left
