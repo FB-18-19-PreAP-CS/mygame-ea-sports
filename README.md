@@ -15,18 +15,30 @@
  --
    Player1-
     * Pressing w goes up
+    
     * Pressing a goes left
+    
     * Pressing s goes down
+    
     * Pressing d goes right
+    
     * Pressing q shoots left
+    
     * Pressing e shoots right
+    
    Player2-
     * numbers refer to the numberpad
+    
     * Pressing 8 goes up
+    
     * Pressing 4 goes left
+    
     * Pressing 5 goes down
+    
     * Pressing 6 goes right
+    
     * Pressing 7 shoots left
+    
     * Pressing 9 shoots right
 
 # Goal:
